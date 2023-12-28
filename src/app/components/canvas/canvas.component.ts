@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -7,7 +13,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.css'],
 })
-export class CanvasComponent implements OnInit {
+export class CanvasComponent implements OnInit, OnChanges {
   imageUrl = '';
   previewImgUrl = '';
   @Input() previewTheme = '';
@@ -15,10 +21,13 @@ export class CanvasComponent implements OnInit {
     private clipboardService: ClipboardService,
     private snackBar: MatSnackBar
   ) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    this.previewImgUrl = `../../../assets/preview/${this.previewTheme}-calender.png`;
+  }
   ngOnInit(): void {
     console.log(this.previewTheme);
     if (this.previewTheme !== '') {
-      this.previewImgUrl = `../../../assets/preview/${this.previewTheme}-preview-heatmap.png`;
+      this.previewImgUrl = `../../../assets/preview/${this.previewTheme}-calender.png`;
     }
 
     console.log(this.previewImgUrl);
