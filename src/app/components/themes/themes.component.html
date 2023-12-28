@@ -1,0 +1,20 @@
+<div class="app-themes">
+  <h6>
+    <span>Select a theme:</span>
+  </h6>
+  <div
+    class="app-themes-list"
+    *ngFor="let theme of getThemesAsArray(); let i = index"
+  >
+    <label>
+      <input
+        type="radio"
+        [value]="theme[1]"
+        [checked]="theme[1] === selectedTheme"
+        (change)="selectOption(theme[1])"
+      />
+
+      {{ theme[0] }}
+    </label>
+  </div>
+</div>

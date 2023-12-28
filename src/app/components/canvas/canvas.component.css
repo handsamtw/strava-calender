@@ -1,0 +1,35 @@
+.app-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+.app-download-button {
+    min-height: 2.5rem;
+    min-width: 7rem;
+    line-height: 2rem;
+    margin: 0 1rem;
+    margin-right: 0.5rem;
+    opacity: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    background-color: #fc4c02;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    border: None;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+  }
+  .app-download-button:hover {
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.1), 0 5px 15px 0 rgba(0,0,0,0.1);
+    opacity: 100%;
+  }
+
+  .app-icon {
+    width: 20px;
+    height: 20px;
+  }

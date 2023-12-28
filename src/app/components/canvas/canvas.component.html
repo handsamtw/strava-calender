@@ -1,0 +1,18 @@
+<div class="app-buttons">
+  <button class="app-download-button" type="button" (click)="copyImage()">
+    <!-- <img class="app-icon" src="../../../assets/copy-icon.png" /> -->
+    <mat-icon>file_copy</mat-icon>
+
+    Copy
+  </button>
+  <button class="app-download-button" type="button" (click)="donwloadImage()">
+    <!-- <img class="app-icon" src="../../../assets/download-icon.png" /> -->
+    <mat-icon>cloud_download</mat-icon>
+
+    Download
+  </button>
+</div>
+
+<div>
+  <img *ngIf="previewTheme !== ''" [src]="previewImgUrl" />
+</div>
