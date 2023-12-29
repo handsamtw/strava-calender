@@ -9,13 +9,13 @@ import { ClipboardService } from 'ngx-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CalenderService } from 'src/app/services/calender.service';
 import { SafeUrl } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
   styleUrls: ['./canvas.component.css'],
 })
 export class CanvasComponent implements OnInit, OnChanges {
-  imageUrl = '';
   selectedImageUrl?: SafeUrl;
   safeImageUrls: SafeUrl[] = [];
   @Input() selectedThemeIndex = 0;
@@ -38,16 +38,20 @@ export class CanvasComponent implements OnInit, OnChanges {
     }
   }
 
-  donwloadImage() {
-    const link = document.createElement('a');
-    link.href = this.imageUrl;
-    link.download = 'downloaded_image.png'; // Specify the downloaded file name
-    link.click();
+  donwloadImage(imageUrl: any) {
+    // saveAs(url, 'my_image.png');
+
+    const blob = this.calenderService.b64toBlob(imageUrl);
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.download = 'myCalendar.png'; // Set the desired file name here
+    downloadLink.click();
   }
 
   copyImage() {
-    this.clipboardService.copyFromContent(this.imageUrl);
-    this.showSnackbar();
+    // this.clipboardService.copyFromContent(this.imageUrl);
+    // this.showSnackbar();
   }
 
   showSnackbar() {
