@@ -5,7 +5,6 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { ClipboardService } from 'ngx-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { SafeUrl } from '@angular/platform-browser';
@@ -20,7 +19,6 @@ export class CanvasComponent implements OnInit, OnChanges {
   safeImageUrls: SafeUrl[] = [];
   @Input() selectedThemeIndex = 0;
   constructor(
-    private clipboardService: ClipboardService,
     private snackBar: MatSnackBar,
     private calendarService: CalendarService
   ) {}
@@ -47,9 +45,17 @@ export class CanvasComponent implements OnInit, OnChanges {
     downloadLink.click();
   }
 
-  copyImage() {
-    // this.clipboardService.copyFromContent(this.imageUrl);
-    // this.showSnackbar();
+  async copyImage(imageUrl: any) {
+    // const imgURL = '/images/generic/file.png';
+    // const data = await fetch(imgURL);
+    const blob = this.calendarService.b64toBlob(imageUrl);
+    // const blob = await data.blob();
+    await navigator.clipboard.write([
+      new ClipboardItem({
+        [blob.type]: blob,
+      }),
+    ]);
+    this.showSnackbar();
   }
 
   showSnackbar() {

@@ -1,6 +1,9 @@
 <div class="app-buttons">
-  <button class="app-download-button" type="button" (click)="copyImage()">
-    <!-- <img class="app-icon" src="../../../assets/copy-icon.png" /> -->
+  <button
+    class="app-download-button"
+    type="button"
+    (click)="copyImage(selectedImageUrl)"
+  >
     <mat-icon>file_copy</mat-icon>
 
     Copy
@@ -10,7 +13,6 @@
     type="button"
     (click)="donwloadImage(selectedImageUrl)"
   >
-    <!-- <img class="app-icon" src="../../../assets/download-icon.png" /> -->
     <mat-icon>cloud_download</mat-icon>
 
     Download
