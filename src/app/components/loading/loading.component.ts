@@ -20,7 +20,7 @@ export class LoadingComponent implements OnInit {
   ngOnInit(): void {
     this.calendarService.fetchCalendarImage().subscribe((imageUrls) => {
       imageUrls.forEach((url: any) => {
-        let objectURL = 'data:image/jpeg;base64,' + url;
+        let objectURL = 'data:image/png;base64,' + url;
         this.calendarService.setCalendarImage(
           this.sanitizer.bypassSecurityTrustUrl(objectURL)
         );

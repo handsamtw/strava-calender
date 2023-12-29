@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, isDevMode } from '@angular/core';
+import { DevEnvironment } from 'src/environment/environment';
+import { ProdEnvironment } from 'src/environment/environment.prod';
 
 @Component({
   selector: 'app-strava-connect-button',
@@ -6,10 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./strava-connect-button.component.css'],
 })
 export class StravaConnectButtonComponent {
+  config: any;
+  constructor() {
+    this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
+  }
   redirect_to_auth_page() {
-    const redirectUri = 'http://localhost:4200/loading';
-
-    const auth_url = `https://www.strava.com/oauth/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUri}&approval_prompt=force&scope=activity:read_all`;
-    window.location.href = auth_url;
+    const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
+    const authUrl = `https://www.strava.com/oauth/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
+    window.location.href = authUrl;
   }
 }
