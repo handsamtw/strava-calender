@@ -10,8 +10,8 @@
       <input
         type="radio"
         [value]="theme[1]"
-        [checked]="theme[1] === selectedTheme"
-        (change)="selectOption(theme[1])"
+        [checked]="i === selectedThemeIndex"
+        (change)="selectOption(i)"
       />
 
       {{ theme[0] }}

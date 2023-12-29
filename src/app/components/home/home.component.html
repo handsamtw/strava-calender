@@ -11,8 +11,13 @@
     <app-footer></app-footer>
   </div>
   <div class="app-canvas">
-    <app-canvas [previewTheme]="selectedTheme"></app-canvas>
+    <app-canvas [selectedThemeIndex]="selectedThemeIndex"></app-canvas>
   </div>
 </div>
-
-<router-outlet></router-outlet>
+<!-- 
+<div>
+  <h2>This is the section to render all calender</h2>
+  <div *ngFor="let imageUrl of safeImageUrls">
+    <img [src]="imageUrl" alt="imageUrl" />
+  </div>
+</div> -->

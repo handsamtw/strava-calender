@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CalanderService } from 'src/app/services/calander.service';
+import { CalenderService } from 'src/app/services/calender.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
@@ -10,16 +11,23 @@ export class LoadingComponent implements OnInit {
   image: any;
   isLoading = true;
   constructor(
-    private calanderService: CalanderService,
-    private sanitizer: DomSanitizer
+    private calenderService: CalenderService,
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {}
 
   //  Ref: https://stackoverflow.com/questions/55591871/view-blob-response-as-image-in-angular
   ngOnInit(): void {
-    this.calanderService.getCalanderImage().subscribe((imageBlob) => {
-      let objectURL = URL.createObjectURL(imageBlob);
-      this.image = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    this.calenderService.fetchCalanderImage().subscribe((imageUrls) => {
+      imageUrls.forEach((url: any) => {
+        let objectURL = 'data:image/jpeg;base64,' + url;
+        this.calenderService.setCalenderImage(
+          this.sanitizer.bypassSecurityTrustUrl(objectURL)
+        );
+      });
       this.isLoading = false;
+      console.log(this.calenderService.getCalenderImage());
+      this.router.navigate(['/']);
     });
   }
 }

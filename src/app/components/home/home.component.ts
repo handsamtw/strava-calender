@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { CalanderService } from 'src/app/services/calander.service';
+import { SafeUrl } from '@angular/platform-browser';
+import { CalenderService } from 'src/app/services/calender.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private calanderService: CalanderService) {}
+  constructor() {}
   ngOnInit(): void {}
-
   imageToShow: any;
-  selectedTheme = '';
+  selectedThemeIndex = 0;
   imageResult: string = '';
-  onOptionSelected(selectedTheme: string) {
-    this.selectedTheme = selectedTheme;
-    console.log('Selected Option:', selectedTheme);
+  onOptionSelected(selectedThemeIndex: number) {
+    this.selectedThemeIndex = selectedThemeIndex;
   }
 }

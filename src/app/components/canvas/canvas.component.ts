@@ -7,7 +7,8 @@ import {
 } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { CalenderService } from 'src/app/services/calender.service';
+import { SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-canvas',
   templateUrl: './canvas.component.html',
@@ -15,22 +16,26 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CanvasComponent implements OnInit, OnChanges {
   imageUrl = '';
-  previewImgUrl = '';
-  @Input() previewTheme = '';
+  selectedImageUrl?: SafeUrl;
+  safeImageUrls: SafeUrl[] = [];
+  @Input() selectedThemeIndex = 0;
   constructor(
     private clipboardService: ClipboardService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private calenderService: CalenderService
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
-    this.previewImgUrl = `../../../assets/preview/${this.previewTheme}-calender.png`;
+    console.log(changes);
+    this.selectedImageUrl = this.safeImageUrls[this.selectedThemeIndex];
+
+    // this.previewImgUrl = `../../../assets/preview/${this.previewTheme}-calender.png`;
   }
   ngOnInit(): void {
-    console.log(this.previewTheme);
-    if (this.previewTheme !== '') {
-      this.previewImgUrl = `../../../assets/preview/${this.previewTheme}-calender.png`;
-    }
+    this.safeImageUrls = this.calenderService.getCalenderImage();
 
-    console.log(this.previewImgUrl);
+    if (this.safeImageUrls.length > 0) {
+      this.selectedImageUrl = this.safeImageUrls[this.selectedThemeIndex];
+    }
   }
 
   donwloadImage() {
@@ -41,7 +46,6 @@ export class CanvasComponent implements OnInit, OnChanges {
   }
 
   copyImage() {
-    console.log(this.previewTheme);
     this.clipboardService.copyFromContent(this.imageUrl);
     this.showSnackbar();
   }

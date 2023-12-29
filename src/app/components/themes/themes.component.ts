@@ -6,8 +6,8 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./themes.component.css'],
 })
 export class ThemesComponent {
-  @Output() optionSelected = new EventEmitter<string>();
-  selectedTheme = 'Oranges';
+  @Output() optionSelected = new EventEmitter<number>();
+  selectedThemeIndex = 0;
   themeOptions = {
     'Strava Classic': 'Oranges',
     Calmness: 'BuGn',
@@ -22,11 +22,11 @@ export class ThemesComponent {
   }
 
   ngOnInit() {
-    this.selectOption('Oranges'); // Initially selecting the first option
+    this.selectOption(0); // Initially selecting the first option
   }
 
-  selectOption(theme: string) {
-    this.selectedTheme = theme;
-    this.optionSelected.emit(theme);
+  selectOption(themeIndex: number) {
+    this.selectedThemeIndex = themeIndex;
+    this.optionSelected.emit(themeIndex);
   }
 }
