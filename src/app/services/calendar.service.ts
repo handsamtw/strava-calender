@@ -6,22 +6,22 @@ import { Buffer } from 'buffer';
 @Injectable({
   providedIn: 'root',
 })
-export class CalenderService {
+export class CalendarService {
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
   private safeImageUrls: SafeUrl[] = [];
-  setCalenderImage(safeImageUrl: any) {
+  setCalendarImage(safeImageUrl: any) {
     this.safeImageUrls.push(safeImageUrl);
   }
-  fetchCalanderImage() {
+  fetchCalendarImage() {
     const token = '9454f6c32eb763387662073899cbce37db7247ef';
     const user_id = '658d171cb1bb1760fa589f0c';
-    const backend_endpoint_local = 'http://127.0.0.1:5000/calander';
+    const backend_endpoint_local = 'http://127.0.0.1:5000/calendar';
     const url = `${backend_endpoint_local}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}&token=${token}`;
 
     return this.http.get<string[]>(url);
   }
 
-  getCalenderImage(): SafeUrl[] {
+  getCalendarImage(): SafeUrl[] {
     return this.safeImageUrls;
   }
 

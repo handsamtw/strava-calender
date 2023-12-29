@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { ClipboardService } from 'ngx-clipboard';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CalenderService } from 'src/app/services/calender.service';
+import { CalendarService } from 'src/app/services/calendar.service';
 import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -22,16 +22,14 @@ export class CanvasComponent implements OnInit, OnChanges {
   constructor(
     private clipboardService: ClipboardService,
     private snackBar: MatSnackBar,
-    private calenderService: CalenderService
+    private calendarService: CalendarService
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
     this.selectedImageUrl = this.safeImageUrls[this.selectedThemeIndex];
-
-    // this.previewImgUrl = `../../../assets/preview/${this.previewTheme}-calender.png`;
   }
   ngOnInit(): void {
-    this.safeImageUrls = this.calenderService.getCalenderImage();
+    this.safeImageUrls = this.calendarService.getCalendarImage();
 
     if (this.safeImageUrls.length > 0) {
       this.selectedImageUrl = this.safeImageUrls[this.selectedThemeIndex];
@@ -41,7 +39,7 @@ export class CanvasComponent implements OnInit, OnChanges {
   donwloadImage(imageUrl: any) {
     // saveAs(url, 'my_image.png');
 
-    const blob = this.calenderService.b64toBlob(imageUrl);
+    const blob = this.calendarService.b64toBlob(imageUrl);
 
     const downloadLink = document.createElement('a');
     downloadLink.href = window.URL.createObjectURL(blob);
