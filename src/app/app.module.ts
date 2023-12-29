@@ -15,6 +15,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { GithubButtonComponent } from './components/github-button/github-button.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoadingComponent } from './components/loading/loading.component';
+import { HomeComponent } from './components/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     GithubButtonComponent,
     CanvasComponent,
+    LoadingComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

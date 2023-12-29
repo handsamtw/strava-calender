@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="app-header">
+    <div className="app-logo">
+      <h1>Strava-Calander Chart Generator</h1>
+      <h4>All your remarkable workout in one image!</h4>
+    </div>
+
+    <app-strava-connect-button></app-strava-connect-button>
+
+    <app-themes (optionSelected)="onOptionSelected($event)"></app-themes>
+    <app-footer></app-footer>
+  </div>
+  <div class="app-canvas">
+    <app-canvas [previewTheme]="selectedTheme"></app-canvas>
+  </div>
+</div>
+<button (click)="onSubmitEvent()">Generate Calender</button>
+
+<router-outlet></router-outlet>
