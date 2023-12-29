@@ -5,10 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ThemesComponent } from './components/themes/themes.component';
-import { SubmitButtonComponent } from './components/submit-button/submit-button.component';
-import { DisplayCardComponent } from './components/display-card/display-card.component';
 import { StravaConnectButtonComponent } from './components/strava-connect-button/strava-connect-button.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
@@ -20,10 +17,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     ThemesComponent,
-    SubmitButtonComponent,
-    DisplayCardComponent,
     StravaConnectButtonComponent,
     FooterComponent,
     GithubButtonComponent,

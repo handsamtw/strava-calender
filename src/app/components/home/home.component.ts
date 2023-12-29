@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SafeUrl } from '@angular/platform-browser';
-import { CalendarService } from 'src/app/services/calendar.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
