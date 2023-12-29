@@ -16,8 +16,4 @@ export class HomeComponent implements OnInit {
     this.selectedTheme = selectedTheme;
     console.log('Selected Option:', selectedTheme);
   }
-
-  onSubmitEvent() {
-    this.calanderService.getCalanderImage();
-  }
 }
