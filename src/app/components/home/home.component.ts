@@ -7,10 +7,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {}
-  imageToShow: any;
-  selectedThemeIndex = 0;
-  imageResult: string = '';
-  onOptionSelected(selectedThemeIndex: number) {
-    this.selectedThemeIndex = selectedThemeIndex;
+  selectedTheme = '';
+  onThemeChange(theme: string) {
+    this.selectedTheme = theme;
   }
 }

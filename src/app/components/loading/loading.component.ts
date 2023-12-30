@@ -31,10 +31,11 @@ export class LoadingComponent implements OnInit {
       calendarImageObservable = this.calendarService.fetchCalendarImage(code);
     }
 
-    calendarImageObservable.subscribe((imageUrls) => {
-      imageUrls.forEach((url: any) => {
-        const objectURL = 'data:image/png;base64,' + url;
+    calendarImageObservable.subscribe((imageObjects) => {
+      imageObjects.forEach((imageObject: any) => {
+        const objectURL = 'data:image/png;base64,' + imageObject.imageUrl;
         this.calendarService.setCalendarImage(
+          imageObject.theme,
           this.sanitizer.bypassSecurityTrustUrl(objectURL)
         );
       });

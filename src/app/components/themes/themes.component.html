@@ -10,8 +10,8 @@
       <input
         type="radio"
         [value]="theme[1]"
-        [checked]="i === selectedThemeIndex"
-        (change)="selectOption(i)"
+        [checked]="theme[1] === selectedTheme"
+        (change)="setSelectTheme(theme[1])"
       />
 
       {{ theme[0] }}
@@ -23,8 +23,7 @@
   <mat-label>Select sport</mat-label>
   <mat-select
     [(ngModel)]="selectedSport"
-    disableOptionCentering
-    panelClass="customClass"
+    (selectionChange)="setSelectedSport()"
     multiple
   >
     <mat-option *ngFor="let sport of sportTypes" [value]="sport">{{

@@ -7,11 +7,11 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./themes.component.css'],
 })
 export class ThemesComponent {
-  @Output() optionSelectedEvent = new EventEmitter<number>();
-  selectedThemeIndex = 0;
+  @Output() themeChangeEvent = new EventEmitter<string>();
+  selectedTheme = localStorage.getItem('selectedTheme') ?? 'Oranges';
+  selectedSport = JSON.parse(localStorage.getItem('selectedSport') ?? '[]');
 
   sportTypes = ['All', 'Run', 'Ride', 'Swim'];
-  selectedSport: string[] = [];
   themeOptions = {
     'Strava Classic': 'Oranges',
     Calmness: 'BuGn',
@@ -25,12 +25,14 @@ export class ThemesComponent {
     return Object.entries(this.themeOptions);
   }
 
-  ngOnInit() {
-    this.selectOption(0); // Initially selecting the first option
-  }
+  ngOnInit() {}
 
-  selectOption(themeIndex: number) {
-    this.selectedThemeIndex = themeIndex;
-    this.optionSelectedEvent.emit(themeIndex);
+  setSelectTheme(selectedTheme: string) {
+    this.selectedTheme = selectedTheme;
+    localStorage.setItem('selectedTheme', this.selectedTheme);
+    this.themeChangeEvent.emit(selectedTheme);
+  }
+  setSelectedSport() {
+    localStorage.setItem('selectedSport', JSON.stringify(this.selectedSport));
   }
 }

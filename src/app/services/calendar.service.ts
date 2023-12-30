@@ -14,14 +14,14 @@ export class CalendarService {
   }
   // write an  environment type when available
   private config: any;
-  private safeImageUrls: SafeUrl[] = [];
+  private imageData: { [key: string]: SafeUrl } = {};
 
   getUserId(code: string) {
     const url = `http://127.0.0.1:5000/uid?code=${code}`;
     return this.http.get<string>(url);
   }
-  setCalendarImage(safeImageUrl: any) {
-    this.safeImageUrls.push(safeImageUrl);
+  setCalendarImage(theme: string, safeImageUrl: any) {
+    this.imageData[theme] = safeImageUrl;
   }
   fetchCalendarImage(code: string) {
     let uid: string = localStorage.getItem('uid') ?? '';
@@ -40,30 +40,18 @@ export class CalendarService {
   }
 
   fetchCalendarImageFromUserId(uid: string) {
+    const selectedSport = JSON.parse(
+      localStorage.getItem('selectedSport') ?? '[All]'
+    );
+
     const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
-    const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&uid=${uid}`;
+    const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=${selectedSport[0]}&theme=All&uid=${uid}`;
 
     return this.http.get<string[]>(url);
   }
-  // this.getUserId(code).subscribe((newUserId) => {
-  //   console.log(newUserId);
-  //   const token = '3665e19fc16ff790662ff99a486e6f24daefced8';
-  //   // const user_id = response['user_id'];
-  //   const user_id = '658d171cb1bb1760fa589f0c';
-  //   const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
-  //   const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}&token=${token}`;
 
-  //   return this.http.get<string[]>(url);
-  // });
-  // const token = '3665e19fc16ff790662ff99a486e6f24daefced8';
-  // const user_id = '658d171cb1bb1760fa589f0c';
-  // const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
-  // const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}&token=${token}`;
-
-  // return this.http.get<string[]>(url);
-
-  getCalendarImage(): SafeUrl[] {
-    return this.safeImageUrls;
+  getCalendarImage(): { [key: string]: SafeUrl } {
+    return this.imageData;
   }
 
   b64toBlob(base64ImageUrl: SafeUrl) {

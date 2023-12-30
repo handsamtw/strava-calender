@@ -16,21 +16,21 @@ import { SafeUrl } from '@angular/platform-browser';
 })
 export class CanvasComponent implements OnInit, OnChanges {
   selectedImageUrl?: SafeUrl;
-  safeImageUrls: SafeUrl[] = [];
-  @Input() selectedThemeIndex = 0;
+  imageData: any = [];
+  @Input() currentTheme: string = '';
   constructor(
     private snackBar: MatSnackBar,
     private calendarService: CalendarService
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-    this.selectedImageUrl = this.safeImageUrls[this.selectedThemeIndex];
+    this.selectedImageUrl = this.imageData[this.currentTheme];
   }
   ngOnInit(): void {
-    this.safeImageUrls = this.calendarService.getCalendarImage();
+    this.imageData = this.calendarService.getCalendarImage();
 
-    if (this.safeImageUrls.length > 0) {
-      this.selectedImageUrl = this.safeImageUrls[this.selectedThemeIndex];
+    if (this.imageData && Object.keys(this.imageData).length > 0) {
+      const theme = localStorage.getItem('selectedTheme') ?? 'Oranges';
+      this.selectedImageUrl = this.imageData[theme];
     }
   }
 
