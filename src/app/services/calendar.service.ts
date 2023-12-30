@@ -17,40 +17,50 @@ export class CalendarService {
   private safeImageUrls: SafeUrl[] = [];
 
   getUserId(code: string) {
-    const url = `http://127.0.0.1:5000/user_id?code=${code}`;
+    const url = `http://127.0.0.1:5000/uid?code=${code}`;
     return this.http.get<string>(url);
   }
   setCalendarImage(safeImageUrl: any) {
     this.safeImageUrls.push(safeImageUrl);
   }
   fetchCalendarImage(code: string) {
-    return this.getUserId(code).pipe(
-      switchMap((response: any) => {
-        const user_id = response['user_id'];
-        // const user_id = '658d171cb1bb1760fa589f0c';
-        const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
-        const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}`;
+    let uid: string = localStorage.getItem('uid') ?? '';
 
-        return this.http.get<string[]>(url);
-      })
-    );
-    // this.getUserId(code).subscribe((newUserId) => {
-    //   console.log(newUserId);
-    //   const token = '3665e19fc16ff790662ff99a486e6f24daefced8';
-    //   // const user_id = response['user_id'];
-    //   const user_id = '658d171cb1bb1760fa589f0c';
-    //   const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
-    //   const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}&token=${token}`;
-
-    //   return this.http.get<string[]>(url);
-    // });
-    // const token = '3665e19fc16ff790662ff99a486e6f24daefced8';
-    // const user_id = '658d171cb1bb1760fa589f0c';
-    // const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
-    // const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}&token=${token}`;
-
-    // return this.http.get<string[]>(url);
+    if (uid === '') {
+      return this.getUserId(code).pipe(
+        switchMap((response: any) => {
+          uid = response['uid'];
+          localStorage.setItem('uid', uid); // Save the retrieved userID
+          return this.fetchCalendarImageFromUserId(uid);
+        })
+      );
+    } else {
+      return this.fetchCalendarImageFromUserId(uid);
+    }
   }
+
+  fetchCalendarImageFromUserId(uid: string) {
+    const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
+    const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&uid=${uid}`;
+
+    return this.http.get<string[]>(url);
+  }
+  // this.getUserId(code).subscribe((newUserId) => {
+  //   console.log(newUserId);
+  //   const token = '3665e19fc16ff790662ff99a486e6f24daefced8';
+  //   // const user_id = response['user_id'];
+  //   const user_id = '658d171cb1bb1760fa589f0c';
+  //   const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
+  //   const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}&token=${token}`;
+
+  //   return this.http.get<string[]>(url);
+  // });
+  // const token = '3665e19fc16ff790662ff99a486e6f24daefced8';
+  // const user_id = '658d171cb1bb1760fa589f0c';
+  // const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
+  // const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=Run&theme=All&user_id=${user_id}&token=${token}`;
+
+  // return this.http.get<string[]>(url);
 
   getCalendarImage(): SafeUrl[] {
     return this.safeImageUrls;

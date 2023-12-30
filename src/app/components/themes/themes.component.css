@@ -10,17 +10,18 @@
     align-items: flex-start;
     border: 1px solid #cfd0d4;
     border-radius: 0.4rem;
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
     padding: 1rem 1rem 2rem;
   }
   
   .app-themes h6 {
-    margin: -2rem 0 1rem;
+    margin: -2.5rem -1rem 1rem;
   }
   
   .app-themes h6 span {
     background-color: var(--header-bg);
     padding: 0 1rem;
+    font-size: 15px;
   }
   
   .app-themes label {

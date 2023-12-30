@@ -20,23 +20,26 @@ export class LoadingComponent implements OnInit {
   ngOnInit(): void {
     const params = new URLSearchParams(this.router.url.split('?')[1]);
     const code = params.get('code');
+
+    let calendarImageObservable;
+
     if (code === null) {
-      console.log('No code found in redirect url');
+      const uid = localStorage.getItem('uid');
+      calendarImageObservable =
+        this.calendarService.fetchCalendarImageFromUserId(uid as string);
+    } else {
+      calendarImageObservable = this.calendarService.fetchCalendarImage(code);
+    }
+
+    calendarImageObservable.subscribe((imageUrls) => {
+      imageUrls.forEach((url: any) => {
+        const objectURL = 'data:image/png;base64,' + url;
+        this.calendarService.setCalendarImage(
+          this.sanitizer.bypassSecurityTrustUrl(objectURL)
+        );
+      });
       this.isLoading = false;
       this.router.navigate(['/']);
-    } else {
-      this.calendarService.fetchCalendarImage(code).subscribe((imageUrls) => {
-        // this.calendarService.fetchCalendarImage(code).subscribe((imageUrls) => {
-        imageUrls.forEach((url: any) => {
-          let objectURL = 'data:image/png;base64,' + url;
-          this.calendarService.setCalendarImage(
-            this.sanitizer.bypassSecurityTrustUrl(objectURL)
-          );
-        });
-        this.isLoading = false;
-
-        this.router.navigate(['/']);
-      });
-    }
+    });
   }
 }

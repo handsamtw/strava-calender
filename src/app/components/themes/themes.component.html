@@ -18,3 +18,17 @@
     </label>
   </div>
 </div>
+
+<mat-form-field>
+  <mat-label>Select sport</mat-label>
+  <mat-select
+    [(ngModel)]="selectedSport"
+    disableOptionCentering
+    panelClass="customClass"
+    multiple
+  >
+    <mat-option *ngFor="let sport of sportTypes" [value]="sport">{{
+      sport
+    }}</mat-option>
+  </mat-select>
+</mat-form-field>

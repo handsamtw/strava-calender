@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+
 @Component({
   selector: 'app-themes',
   templateUrl: './themes.component.html',
@@ -8,6 +9,9 @@ import { Output, EventEmitter } from '@angular/core';
 export class ThemesComponent {
   @Output() optionSelectedEvent = new EventEmitter<number>();
   selectedThemeIndex = 0;
+
+  sportTypes = ['All', 'Run', 'Ride', 'Swim'];
+  selectedSport: string[] = [];
   themeOptions = {
     'Strava Classic': 'Oranges',
     Calmness: 'BuGn',

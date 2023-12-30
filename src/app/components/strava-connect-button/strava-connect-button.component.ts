@@ -13,8 +13,13 @@ export class StravaConnectButtonComponent {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
   }
   redirect_to_auth_page() {
-    const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
-    const authUrl = `https://www.strava.com/oauth/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
-    window.location.href = authUrl;
+    const uid = localStorage.getItem('uid');
+    if (uid != null) {
+      window.location.href = '/loading';
+    } else {
+      const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
+      const authUrl = `https://www.strava.com/oauth/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
+      window.location.href = authUrl;
+    }
   }
 }
