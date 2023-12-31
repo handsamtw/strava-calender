@@ -1,5 +1,5 @@
 export const ProdEnvironment = {
   production: true,
-  CALENDAR_IMAGE_ENDPOINT: 'http://127.0.0.1:5000/calendar',
+  BACKEND_ENDPOINT: 'https://strava-calender-api.vercel.app',
   REDIRECT_URI_AFTER_AUTH: 'https://strava-calender.vercel.app/loading',
 };

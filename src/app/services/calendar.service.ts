@@ -17,8 +17,8 @@ export class CalendarService {
   private imageData: { [key: string]: SafeUrl } = {};
 
   getUserId(code: string) {
-    const url = `http://127.0.0.1:5000/uid?code=${code}`;
-    return this.http.get<string>(url);
+    const uid_url = `${this.config.BACKEND_ENDPOINT}/uid?code=${code}`;
+    return this.http.get<string>(uid_url);
   }
   setCalendarImage(theme: string, safeImageUrl: any) {
     this.imageData[theme] = safeImageUrl;
@@ -43,7 +43,7 @@ export class CalendarService {
     const selectedSport = JSON.parse(
       localStorage.getItem('selectedSport') ?? '["Run"]'
     );
-    const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
+    const calendarImageEndpoint = `${this.config.BACKEND_ENDPOINT}/calendar`;
     const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=${selectedSport.join(
       ','
     )}&theme=All&uid=${uid}`;

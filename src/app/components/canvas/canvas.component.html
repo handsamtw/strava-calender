@@ -1,24 +1,26 @@
-<div class="app-buttons">
-  <button
-    class="app-download-button"
-    type="button"
-    (click)="copyImage(selectedImageUrl)"
-  >
-    <mat-icon>file_copy</mat-icon>
+<div *ngIf="selectedImageUrl">
+  <div class="app-buttons">
+    <button
+      class="app-download-button"
+      type="button"
+      (click)="copyImage(selectedImageUrl)"
+    >
+      <mat-icon>file_copy</mat-icon>
 
-    Copy
-  </button>
-  <button
-    class="app-download-button"
-    type="button"
-    (click)="donwloadImage(selectedImageUrl)"
-  >
-    <mat-icon>cloud_download</mat-icon>
+      Copy
+    </button>
+    <button
+      class="app-download-button"
+      type="button"
+      (click)="donwloadImage(selectedImageUrl)"
+    >
+      <mat-icon>cloud_download</mat-icon>
 
-    Download
-  </button>
-</div>
+      Download
+    </button>
+  </div>
 
-<div>
-  <img *ngIf="selectedImageUrl" [src]="selectedImageUrl" />
+  <div>
+    <img *ngIf="selectedImageUrl" [src]="selectedImageUrl" />
+  </div>
 </div>
