@@ -8,14 +8,17 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class ThemesComponent {
   @Output() themeChangeEvent = new EventEmitter<string>();
-  selectedTheme = localStorage.getItem('selectedTheme') ?? 'Oranges';
-  selectedSport = JSON.parse(localStorage.getItem('selectedSport') ?? '[]');
+  selectedTheme = localStorage.getItem('selectedTheme') ?? 'Reds';
+  selectedSport = JSON.parse(
+    localStorage.getItem('selectedSport') ?? '["Run"]'
+  );
 
-  sportTypes = ['All', 'Run', 'Ride', 'Swim'];
+  sportTypes = ['Run', 'Ride', 'Swim'];
   themeOptions = {
-    'Strava Classic': 'Oranges',
+    Energy: 'Reds',
     Calmness: 'BuGn',
-    'Github Classic': 'Greens',
+    Forest: 'Greens',
+    Ocean: 'Blues',
     Aurora: 'PuBu',
     Spring: 'RdPu',
     Twilight: 'twilight',

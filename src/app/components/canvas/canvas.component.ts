@@ -29,14 +29,12 @@ export class CanvasComponent implements OnInit, OnChanges {
     this.imageData = this.calendarService.getCalendarImage();
 
     if (this.imageData && Object.keys(this.imageData).length > 0) {
-      const theme = localStorage.getItem('selectedTheme') ?? 'Oranges';
+      const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
       this.selectedImageUrl = this.imageData[theme];
     }
   }
 
   donwloadImage(imageUrl: any) {
-    // saveAs(url, 'my_image.png');
-
     const blob = this.calendarService.b64toBlob(imageUrl);
 
     const downloadLink = document.createElement('a');
@@ -46,10 +44,7 @@ export class CanvasComponent implements OnInit, OnChanges {
   }
 
   async copyImage(imageUrl: any) {
-    // const imgURL = '/images/generic/file.png';
-    // const data = await fetch(imgURL);
     const blob = this.calendarService.b64toBlob(imageUrl);
-    // const blob = await data.blob();
     await navigator.clipboard.write([
       new ClipboardItem({
         [blob.type]: blob,

@@ -41,11 +41,12 @@ export class CalendarService {
 
   fetchCalendarImageFromUserId(uid: string) {
     const selectedSport = JSON.parse(
-      localStorage.getItem('selectedSport') ?? '[All]'
+      localStorage.getItem('selectedSport') ?? '["Run"]'
     );
-
     const calendarImageEndpoint = this.config.CALENDAR_IMAGE_ENDPOINT;
-    const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=${selectedSport[0]}&theme=All&uid=${uid}`;
+    const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=${selectedSport.join(
+      ','
+    )}&theme=All&uid=${uid}`;
 
     return this.http.get<string[]>(url);
   }
