@@ -9,8 +9,8 @@
     min-height: 2.5rem;
     min-width: 7rem;
     line-height: 2rem;
-    margin: 0 1rem;
-    margin-right: 0.5rem;
+    margin: 0 0.5rem 0 2rem;
+    
     opacity: 90%;
     display: flex;
     justify-content: center;
