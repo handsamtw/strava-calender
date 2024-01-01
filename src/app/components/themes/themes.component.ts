@@ -19,11 +19,11 @@ export class ThemesComponent {
     'Swim',
     'Walk',
     'Hike',
-    'Trail-Run',
-    'Ski',
+    'Trail Run',
+    'Alpine Ski',
     'Yoga',
-    'Hiit',
-    'Weight-Training',
+    'HIIT',
+    'Weight Training',
     'Workout',
   ];
   themeOptions = {
