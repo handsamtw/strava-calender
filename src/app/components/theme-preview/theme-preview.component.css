@@ -1,0 +1,9 @@
+.square {
+    width: 30px; /* Set the width and height of the square */
+    height: 30px;
+    margin: 10px ;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+  }
+  

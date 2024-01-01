@@ -13,7 +13,19 @@ export class ThemesComponent {
     localStorage.getItem('selectedSport') ?? '["Run"]'
   );
 
-  sportTypes = ['Run', 'Ride', 'Swim'];
+  sportTypes = [
+    'Run',
+    'Ride',
+    'Swim',
+    'Walk',
+    'Hike',
+    'Trail-Run',
+    'Ski',
+    'Yoga',
+    'Hiit',
+    'Weight-Training',
+    'Workout',
+  ];
   themeOptions = {
     Energy: 'Reds',
     Calmness: 'BuGn',
@@ -23,6 +35,16 @@ export class ThemesComponent {
     Spring: 'RdPu',
     Twilight: 'twilight',
   };
+
+  previewColors = [
+    ['#F4CDB9', '#EA7759', '#CF4032', '#6A1414'],
+    ['#D5ECE8', '#94CCB9', '#61AB7C', '#1F4D25'],
+    ['#CCE7C1', '#86C17D', '#45894D', '#1F4D25'],
+    ['#AAC9DF', '#6A9FC9', '#3F75B3', '#183976'],
+    ['#D6D6E6', '#7AA4C9', '#3E7DB3', '#1A4267'],
+    ['#F8E1DE', '#EB97B0', '#C63F91', '#661070'],
+    ['#B7C5CD', '#C5A690', '#5D54A8', '#39143A'],
+  ];
   // Function to convert object into an array of key-value pairs
   getThemesAsArray() {
     return Object.entries(this.themeOptions);

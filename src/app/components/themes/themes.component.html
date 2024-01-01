@@ -6,12 +6,14 @@
     class="app-themes-list"
     *ngFor="let theme of getThemesAsArray(); let i = index"
   >
+    <app-theme-preview [colorSpectrum]="previewColors[i]"></app-theme-preview>
     <label>
       <input
         type="radio"
         [value]="theme[1]"
         [checked]="theme[1] === selectedTheme"
         (change)="setSelectTheme(theme[1])"
+        class="app-radio"
       />
 
       {{ theme[0] }}
@@ -26,8 +28,13 @@
     (selectionChange)="setSelectedSport()"
     multiple
   >
-    <mat-option *ngFor="let sport of sportTypes" [value]="sport">{{
-      sport
-    }}</mat-option>
+    <mat-option *ngFor="let sport of sportTypes" [value]="sport">
+      <img
+        [src]="'../../../assets/sport-icon/' + sport.toLowerCase() + '.svg'"
+        class="sport-icon"
+      />
+
+      {{ sport }}</mat-option
+    >
   </mat-select>
 </mat-form-field>

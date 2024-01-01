@@ -12,6 +12,7 @@
     border-radius: 0.4rem;
     margin-bottom: 3rem;
     padding: 1rem 1rem 2rem;
+    font-size: 15px;
   }
   
   .app-themes h6 {
@@ -48,4 +49,20 @@
     display: block;
     width: 9px;
     height: 9px;
+  }
+
+  .sport-icon{
+    margin: -3px 3px;
+  }
+
+  .app-themes-list {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 0px;
+  }
+  .app-radio {
+    width: 15px;
+    height: 15px;
+    margin: 5px;
   }

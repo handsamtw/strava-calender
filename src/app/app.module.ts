@@ -18,6 +18,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { ThemePreviewComponent } from './components/theme-preview/theme-preview.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatSelectModule } from '@angular/material/select';
     CanvasComponent,
     LoadingComponent,
     HomeComponent,
+    ThemePreviewComponent,
   ],
   imports: [
     FormsModule,

@@ -8,7 +8,7 @@
 
 .app-header {
     background-color:#f4f5f6;
-    min-height: 40rem;
+    min-height: 60rem;
     width: 30%;
     height: 100%;
     text-align: center; 
@@ -22,7 +22,7 @@
 
 .app-canvas {
     background-color:#f4f5f6;
-    min-height: 40rem;
+    min-height: 60rem;
     width: 70%;
     height: 100%;
     text-align: center; 
