@@ -1,3 +1,30 @@
+## Strava Calendar
+
+Strava is a fitness app where users track their workouts, analyze performance, and connect with a community of athletes. It records activities like running and cycling using GPS, offering stats, challenges, and a social platform for sharing achievements.
+
+This app allow Strava users to create their Strava calendar and share the image results on the social media
+
+Running on Vercel serverless function, store data in MongoDB (store only access_token, refresh_token, token_expired_timestamp)
+
+Table of Contents
+Connect And Grant Permission
+Example
+Running for development locally
+Setting up Vercel
+Setting up MongoDB
+Setting up Strava dev
+Running locally
+How to Contribute
+Features in Progress
+Credit
+
+## Connect And Grant Permission
+
+Visit
+[Strava Calendar Chart Generator](strava-calender.vercel.app) and click Connect with Strava button below to grant permission
+
+## Example
+
 # Angular
 
 This directory is a brief example of an [Angular](https://angular.io/) app that can be deployed to Vercel with zero configuration.
