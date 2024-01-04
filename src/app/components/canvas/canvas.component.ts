@@ -53,9 +53,9 @@ export class CanvasComponent implements OnInit, OnChanges {
     this.showSnackbar();
   }
 
-  showSnackbar() {
-    this.snackBar.open('Image URL copied!', 'Close', {
-      duration: 1000, // Adjust duration as needed
+  private showSnackbar() {
+    this.snackBar.open('Image copied!', 'Close', {
+      duration: 1500, // Adjust duration as needed
     });
   }
 }

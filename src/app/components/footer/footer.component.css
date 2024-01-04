@@ -1,8 +1,13 @@
 .app-powered {
+  display: flex;
+  text-align: center;
+  justify-content: center;
     margin-top: 1rem;
+    font-size: 12px;
   }
   
   .app-powered img {
+    
     width: auto;
-    height: 3rem;
+    height: 2rem;
   }
