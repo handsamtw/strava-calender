@@ -25,6 +25,20 @@ Visit
 
 ## Example
 
+### Default theme
+
+![theme-reds](/src/assets/preview-image/theme-Reds.png)
+
+### Forest theme
+
+![theme-greens](/src/assets/preview-image/theme-Greens.png)
+
+### Aurora theme
+
+![theme-PuBu](/src/assets/preview-image/theme-PuBu.png)
+
+There're total 7 themes to select
+
 # Angular
 
 This directory is a brief example of an [Angular](https://angular.io/) app that can be deployed to Vercel with zero configuration.
