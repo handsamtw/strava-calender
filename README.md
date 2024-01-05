@@ -11,8 +11,6 @@ Connect And Grant Permission
 Example
 Running for development locally
 Setting up Vercel
-Setting up MongoDB
-Setting up Strava dev
 Running locally
 How to Contribute
 Features in Progress
@@ -39,37 +37,45 @@ Visit
 
 There're total 7 themes to select
 
-# Angular
+## Running for development locally
 
-This directory is a brief example of an [Angular](https://angular.io/) app that can be deployed to Vercel with zero configuration.
+To develop locally, you need:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.3.
+- A fork of this project as your repository
+- A Vercel project connected with the forked repository
 
-## Deploy Your Own
+- A complete setup of [backend microservice repository](https://github.com/handsamtw/strava-calender-api)
 
-Deploy your own Angular project with Vercel.
+### Setting up Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/angular&template=angular)
+- [Create a new Vercel project by importing](https://vercel.com/import) the forked project on GitHub
 
-_Live Example: https://angular-template.vercel.app_
+### Setting up MongoDB
 
-## Development server
+## Running locally
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To run the [Angular](https://angular.io/) app locally, you can simply do
 
-## Code scaffolding
+- clone the repo, and cd to the director
+- `npm install` will install all required dependency in package.json
+- `ng serve`
+- Now try to access http://localhost:4200
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Angular CLI Code scaffolding
 
-## Build
+### Build the projects
+
+`ng build` will build the project and stored the artifacts in the `dist/` directory
+
+### Running unit tests
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
