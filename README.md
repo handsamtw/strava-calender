@@ -84,7 +84,7 @@ How to run the frontend locally
 
 - A fork of this project as your repository
 - Clone the forked repo, and cd to project's root director
-- Run `npm install` to install all required dependency in package.json
+- Make sure you have Angular CLI install in your development environment
 - Run `ng serve` and you suppose to be able to access http://localhost:4200
 - (Opt.) A compreehensive setup of [backend API repository](https://github.com/handsamtw/strava-calender-api)
 - (Opt.) Running the backend server while developing the frontend
