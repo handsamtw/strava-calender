@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 .vercel
 .angular
+package-lock.json
