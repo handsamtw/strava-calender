@@ -31,6 +31,7 @@ The application offers diverse heatmap views of Strava activity and presents an 
 <img  height=300 width=480 alt="scheme-Greens" src="./src/assets/example/scheme-Greens.png">
 
 **Aurora scheme**
+
 <img  height=300 width=480 alt="scheme-Pubu" src="./src/assets/example/scheme-PuBu.png">
 
 There are a total of seven color scheme available for selection.
