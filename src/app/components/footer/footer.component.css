@@ -11,3 +11,7 @@
     width: auto;
     height: 2rem;
   }
+
+  .app-powered p {
+    margin: 12px 6px
+  }
