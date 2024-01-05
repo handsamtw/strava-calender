@@ -37,9 +37,11 @@ There are a total of seven color scheme available for selection.
 
 ## Tech Stack
 
-### Hosting
+### Deployment
 
 - **Vercel**
+  - Vercel is an all-in-one platform
+    featuring Global CDNs, facilitating application deployment and delivery. While Vercel excels in supporting Next.js, its capabilities extend beyond deploying Next.js applications alone. It offers a diverse range of framework templates, enabling me to effortlessly deploy my Angular application with just a few clicks.
 
 ### Database
 
@@ -50,7 +52,7 @@ There are a total of seven color scheme available for selection.
 ### Backend API
 
 - **[strava-calendar-api](https://github.com/handsamtw/strava-calender-api)**
-  - Built with Python Flask framework hosted on Vercel
+  - Built with Python Flask framework deployed on Vercel. Strongly recommended to walk through that repo if you want to contribute to the project
 
 ### Third-Party dependencies
 
@@ -63,65 +65,31 @@ There are a total of seven color scheme available for selection.
 
 ## Table of Contents
 
-| Section                         | Description                                                    |
-| ------------------------------- | -------------------------------------------------------------- |
-| Connect And Grant Permission    | Process for establishing connections and obtaining permissions |
-| Running for development locally | Steps to run the project locally for development               |
-| Setting up Vercel               | Guidelines for configuring Vercel hosting                      |
-| Running locally                 | Instructions to run the project locally                        |
-| How to Contribute               | Information on contributing to the project                     |
-| Features in Progress            | Ongoing features and their development status                  |
-| Credit                          | Acknowledgment and attribution                                 |
+- [How to interact with the the application](#how-to-interact-with-the-the-application)
+- [Running for development locally](#running-for-development-locally)
+- [How to Contribute](#how-to-contribute)
+- [Features in Progress](#features-in-progress)
 
-## Connect And Grant Permission
+### How to interact with the the application
 
 Visit
 [Strava Calendar Chart Generator](strava-calender.vercel.app) and click `Connect with Strava` button to grant permission
 
-## Running for development locally
+### Running for development locally
 
-To develop locally, you need:
+Modifying the frontend application solely for UI adjustments without involving real Strava data is straightforward. However, for testing the functionality, developers must navigate through the comprehensive setup of the [backend API repository](https://github.com/handsamtw/strava-calender-api). This includes configuring the database connection and interacting with the Strava API, which is necessary for local ececution of backend server.
+
+How to run the frontend locally
 
 - A fork of this project as your repository
-- A Vercel project connected with the forked repository
+- Clone the forked repo, and cd to project's root director
+- Run `npm install` to install all required dependency in package.json
+- Run `ng serve` and you suppose to be able to access http://localhost:4200
+- (Opt.) A compreehensive setup of [backend API repository](https://github.com/handsamtw/strava-calender-api)
+- (Opt.) Running the backend server while developing the frontend
 
-- A complete setup of [backend microservice repository](https://github.com/handsamtw/strava-calender-api)
+### How to Contribute
 
-### Setting up Vercel
-
-- [Create a new Vercel project by importing](https://vercel.com/import) the forked project on GitHub
-
-### Setting up MongoDB
-
-## Running locally
-
-To run the [Angular](https://angular.io/) app locally, you can simply do
-
-- clone the repo, and cd to the director
-- `npm install` will install all required dependency in package.json
-- `ng serve`
-- Now try to access http://localhost:4200
-
-## Angular CLI Code scaffolding
-
-### Build the projects
-
-`ng build` will build the project and stored the artifacts in the `dist/` directory
-
-### Running unit tests
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-### Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-### Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Features in Progress
 
 ### What I have learned?
