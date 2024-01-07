@@ -5,6 +5,8 @@ import { Buffer } from 'buffer';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
 import { switchMap } from 'rxjs';
+type calendarImage = { [key: string]: SafeUrl };
+
 @Injectable({
   providedIn: 'root',
 })
@@ -14,14 +16,14 @@ export class CalendarService {
   }
   // write an  environment type when available
   private config: any;
-  private imageData: { [key: string]: SafeUrl } = {};
+  private imageData: calendarImage = {};
 
   getUserId(code: string) {
     const uid_url = `${this.config.BACKEND_ENDPOINT}/uid?code=${code}`;
     return this.http.get<string>(uid_url);
   }
-  setCalendarImage(theme: string, safeImageUrl: any) {
-    this.imageData[theme] = safeImageUrl;
+  setCalendarImage(data: calendarImage) {
+    this.imageData = data;
   }
   fetchCalendarImage(code: string) {
     let uid: string = localStorage.getItem('uid') ?? '';
@@ -44,7 +46,7 @@ export class CalendarService {
       localStorage.getItem('selectedSport') ?? '["Run"]'
     );
     const calendarImageEndpoint = `${this.config.BACKEND_ENDPOINT}/calendar`;
-    const url = `${calendarImageEndpoint}?ploy_by=distance&sport_type=${selectedSport.join(
+    const url = `${calendarImageEndpoint}?sport_type=${selectedSport.join(
       ','
     )}&theme=All&uid=${uid}`;
 

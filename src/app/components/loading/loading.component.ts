@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/services/calendar.service';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { map } from 'rxjs';
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
@@ -31,16 +32,24 @@ export class LoadingComponent implements OnInit {
       calendarImageObservable = this.calendarService.fetchCalendarImage(code);
     }
 
-    calendarImageObservable.subscribe((imageObjects) => {
-      imageObjects.forEach((imageObject: any) => {
-        const objectURL = 'data:image/png;base64,' + imageObject.imageUrl;
-        this.calendarService.setCalendarImage(
-          imageObject.theme,
-          this.sanitizer.bypassSecurityTrustUrl(objectURL)
-        );
+    calendarImageObservable
+      .pipe(
+        map((imageData) => {
+          const modifiedImageObservable: { [key: string]: SafeUrl } = {};
+          for (const theme in imageData) {
+            if (imageData.hasOwnProperty(theme)) {
+              const objectURL = 'data:image/png;base64,' + imageData[theme];
+              modifiedImageObservable[theme] =
+                this.sanitizer.bypassSecurityTrustUrl(objectURL);
+            }
+          }
+          return modifiedImageObservable;
+        })
+      )
+      .subscribe((modifiedImageObservable) => {
+        this.calendarService.setCalendarImage(modifiedImageObservable);
+        this.isLoading = false;
+        this.router.navigate(['/']);
       });
-      this.isLoading = false;
-      this.router.navigate(['/']);
-    });
   }
 }
