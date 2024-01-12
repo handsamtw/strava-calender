@@ -8,6 +8,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { SafeUrl } from '@angular/platform-browser';
+import { CalendarImage } from '../../model';
 
 @Component({
   selector: 'app-canvas',
@@ -16,7 +17,7 @@ import { SafeUrl } from '@angular/platform-browser';
 })
 export class CanvasComponent implements OnInit, OnChanges {
   selectedImageUrl?: SafeUrl;
-  imageData: any = [];
+  imageData: CalendarImage = {};
   @Input() currentTheme: string = '';
   constructor(
     private snackBar: MatSnackBar,
@@ -34,7 +35,7 @@ export class CanvasComponent implements OnInit, OnChanges {
     }
   }
 
-  donwloadImage(imageUrl: any) {
+  donwloadImage(imageUrl: SafeUrl) {
     const blob = this.calendarService.b64toBlob(imageUrl);
 
     const downloadLink = document.createElement('a');
@@ -43,7 +44,7 @@ export class CanvasComponent implements OnInit, OnChanges {
     downloadLink.click();
   }
 
-  async copyImage(imageUrl: any) {
+  async copyImage(imageUrl: SafeUrl) {
     const blob = this.calendarService.b64toBlob(imageUrl);
     await navigator.clipboard.write([
       new ClipboardItem({

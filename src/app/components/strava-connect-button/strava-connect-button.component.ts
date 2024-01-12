@@ -1,14 +1,14 @@
 import { Component, isDevMode } from '@angular/core';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
-
+import { Environment } from 'src/app/model';
 @Component({
   selector: 'app-strava-connect-button',
   templateUrl: './strava-connect-button.component.html',
   styleUrls: ['./strava-connect-button.component.css'],
 })
 export class StravaConnectButtonComponent {
-  config: any;
+  config: Environment;
   constructor() {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
   }

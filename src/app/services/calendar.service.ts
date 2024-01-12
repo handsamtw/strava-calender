@@ -1,31 +1,32 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
 import { Buffer } from 'buffer';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
-import { switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
+import { CalendarImage, Environment } from '../model';
 type calendarImage = { [key: string]: SafeUrl };
 
 @Injectable({
   providedIn: 'root',
 })
 export class CalendarService {
-  constructor(private http: HttpClient, private sanitizer: DomSanitizer) {
+  constructor(private http: HttpClient) {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
   }
   // write an  environment type when available
-  private config: any;
+  private config: Environment;
   private imageData: calendarImage = {};
 
-  getUserId(code: string) {
+  getUserId(code: string): Observable<string> {
     const uid_url = `${this.config.BACKEND_ENDPOINT}/uid?code=${code}`;
     return this.http.get<string>(uid_url);
   }
   setCalendarImage(data: calendarImage) {
     this.imageData = data;
   }
-  fetchCalendarImage(code: string) {
+  fetchCalendarImage(code: string): Observable<CalendarImage> {
     let uid: string = localStorage.getItem('uid') ?? '';
 
     if (uid === '') {
@@ -41,7 +42,7 @@ export class CalendarService {
     }
   }
 
-  fetchCalendarImageFromUserId(uid: string) {
+  fetchCalendarImageFromUserId(uid: string): Observable<CalendarImage> {
     const selectedSport = JSON.parse(
       localStorage.getItem('selectedSport') ?? '["Run"]'
     );
@@ -50,10 +51,10 @@ export class CalendarService {
       ','
     )}&theme=All&uid=${uid}`;
 
-    return this.http.get<string[]>(url);
+    return this.http.get<CalendarImage>(url);
   }
 
-  getCalendarImage(): { [key: string]: SafeUrl } {
+  getCalendarImage(): CalendarImage {
     return this.imageData;
   }
 
