@@ -9,7 +9,6 @@ import { map } from 'rxjs';
   styleUrls: ['./loading.component.css'],
 })
 export class LoadingComponent implements OnInit {
-  image: any;
   isLoading = true;
   constructor(
     private calendarService: CalendarService,
