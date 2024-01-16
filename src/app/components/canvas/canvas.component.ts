@@ -8,7 +8,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { SafeUrl } from '@angular/platform-browser';
-import { CalendarImage } from '../../model';
+import { CalendarImage, Error } from '../../model';
 
 @Component({
   selector: 'app-canvas',
@@ -27,9 +27,12 @@ export class CanvasComponent implements OnInit, OnChanges {
     this.selectedImageUrl = this.imageData[this.currentTheme];
   }
   ngOnInit(): void {
-    this.imageData = this.calendarService.getCalendarImage();
-
-    if (this.imageData && Object.keys(this.imageData).length > 0) {
+    const error = this.calendarService.getError();
+    if (error) {
+      const errorMessage = `${error['status']}: ${error['error']}`;
+      this.showSnackbar(errorMessage, 5000);
+    } else {
+      this.imageData = this.calendarService.getCalendarImage();
       const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
       this.selectedImageUrl = this.imageData[theme];
     }
@@ -51,12 +54,12 @@ export class CanvasComponent implements OnInit, OnChanges {
         [blob.type]: blob,
       }),
     ]);
-    this.showSnackbar();
+    this.showSnackbar('Image copied!', 1500);
   }
 
-  private showSnackbar() {
-    this.snackBar.open('Image copied!', 'Close', {
-      duration: 1500, // Adjust duration as needed
+  private showSnackbar(message: string, duration: number) {
+    this.snackBar.open(message, 'Close', {
+      duration: duration,
     });
   }
 }

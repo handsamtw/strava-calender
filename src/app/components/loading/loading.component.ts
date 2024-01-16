@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { map } from 'rxjs';
 })
 export class LoadingComponent implements OnInit {
   isLoading = true;
+  errorEvent = new EventEmitter<string>();
   constructor(
     private calendarService: CalendarService,
     private sanitizer: DomSanitizer,
@@ -30,7 +31,6 @@ export class LoadingComponent implements OnInit {
     } else {
       calendarImageObservable = this.calendarService.fetchCalendarImage(code);
     }
-
     calendarImageObservable
       .pipe(
         map((imageData) => {
@@ -45,10 +45,20 @@ export class LoadingComponent implements OnInit {
           return modifiedImageObservable;
         })
       )
-      .subscribe((modifiedImageObservable) => {
-        this.calendarService.setCalendarImage(modifiedImageObservable);
-        this.isLoading = false;
-        this.router.navigate(['/']);
-      });
+      .subscribe(
+        (modifiedImageObservable) => {
+          this.calendarService.setCalendarImage(modifiedImageObservable);
+          this.isLoading = false;
+          this.router.navigate(['/']);
+        },
+        ({ error, status, message }) => {
+          this.isLoading = false;
+          this.calendarService.setError({
+            error: error.error,
+            status: status,
+          });
+          this.router.navigate(['/']);
+        }
+      );
   }
 }

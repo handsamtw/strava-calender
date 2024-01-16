@@ -5,8 +5,7 @@ import { Buffer } from 'buffer';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
 import { Observable, switchMap } from 'rxjs';
-import { CalendarImage, Environment } from '../model';
-type calendarImage = { [key: string]: SafeUrl };
+import { CalendarImage, Environment, Error } from '../model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,14 +16,25 @@ export class CalendarService {
   }
   // write an  environment type when available
   private config: Environment;
-  private imageData: calendarImage = {};
+  private imageData: CalendarImage = {};
+  private error: Error | undefined = undefined;
 
   getUserId(code: string): Observable<string> {
     const uid_url = `${this.config.BACKEND_ENDPOINT}/uid?code=${code}`;
     return this.http.get<string>(uid_url);
   }
-  setCalendarImage(data: calendarImage) {
+
+  getCalendarImage(): CalendarImage {
+    return this.imageData;
+  }
+  setCalendarImage(data: CalendarImage) {
     this.imageData = data;
+  }
+  getError(): Error | undefined {
+    return this.error;
+  }
+  setError(error: Error) {
+    this.error = error;
   }
   fetchCalendarImage(code: string): Observable<CalendarImage> {
     let uid: string = localStorage.getItem('uid') ?? '';
@@ -52,10 +62,6 @@ export class CalendarService {
     )}&theme=All&uid=${uid}`;
 
     return this.http.get<CalendarImage>(url);
-  }
-
-  getCalendarImage(): CalendarImage {
-    return this.imageData;
   }
 
   b64toBlob(base64ImageUrl: SafeUrl) {
