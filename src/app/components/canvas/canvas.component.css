@@ -5,12 +5,16 @@
     margin-bottom: 2rem;
   }
 
-.app-download-button {
-    min-height: 2.5rem;
-    min-width: 7rem;
-    line-height: 2rem;
+  .app-buttons button{
     margin: 0 0.5rem 0 2rem;
-    
+
+  }
+
+.app-download-button {
+    min-height: 2.3rem;
+    min-width: 6.5rem;
+    padding: 0 2rem;
+    line-height: 2rem;
     opacity: 90%;
     display: flex;
     justify-content: center;
@@ -32,4 +36,9 @@
   .app-icon {
     width: 20px;
     height: 20px;
+  }
+
+  .calendar-image {
+    width: 80%;
+    height:80%;
   }
