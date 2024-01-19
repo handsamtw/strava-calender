@@ -1,60 +1,78 @@
 .container {
     display: flex;
     flex-direction: row;
-    margin: 20px 20px;
+    margin: -8px;
     justify-content: center; /* Horizontally centers items */
     align-items: center; /* Vertically centers items */
+    width: 100%;
+    max-width: 1600px; /* Adjust as needed */
+    
+}
+@media only screen and (max-width: 400px) {
+  .container {
+    display: block;
+  }
+  .container div {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  .container h1 {
+    font-size:6vw;
+  }
+  
+  .container h4 {
+    
+    font-size:3vw;
+    
+  }
+  
+  
 }
 
 .app-header {
     background-color:#f4f5f6;
     min-height: 60rem;
     width: 30%;
-    height: 100%;
     text-align: center; 
-    margin: 0;
     padding: 1rem;
     color: rgb(164, 157, 145);
     font-family: 'IBM Plex Mono', monospace;
-    overflow-y: scroll;
+    overflow-y: hidden;
+    margin: 5px;
+    
 }
 
 
 .app-canvas {
-    background-color:#f4f5f6;
-    min-height: 60rem;
-    width: 70%;
-    height: 100%;
-    text-align: center; 
-    margin: 0;
-    padding: 1rem;
-    color: rgb(164, 157, 145);
-    font-family: 'IBM Plex Mono', monospace;
-    overflow-y: scroll;
+  /* background-color:#f4f5f6; */
+  min-height: 60rem;
+  width: 70%;
+  text-align: center; 
+  padding: 1rem;
+  color: rgb(164, 157, 145);
+  font-family: 'IBM Plex Mono', monospace;
+  overflow-y: hidden;
+  margin: 5px;
 }
 
 .app-logo {
     text-align: center;
     padding: 2rem 1rem 0;
   }
-h1,
-h4 {
-  font-weight: 300;
-  margin: 0;
-  padding: 0;
-}
+
 
 h1 {
-    font-size: 3rem;
+  font-size:2.5vw;
     line-height: 1.2;
+    font-weight: 300;
   }
   
   h4 {
-    margin-top: 1em;
+    
+    font-size:1vw;
+    font-weight: 100;
   }
 
-
-.right{
-    width: 70%;
-    height: 100%;
-}

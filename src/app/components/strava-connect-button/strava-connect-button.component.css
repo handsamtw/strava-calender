@@ -1,6 +1,12 @@
 .strava-btn {
     width: 60%;
     height: 60%;
-    margin: 30px;
-    padding: 10px;
+    margin-bottom: 2rem;
+    padding: 5px;
+}
+@media only screen and (max-width: 400px) {
+    .strava-btn {
+        width: 50%;
+        height: 50%;
+    }
 }
