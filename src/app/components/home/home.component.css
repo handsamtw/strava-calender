@@ -60,11 +60,21 @@
   overflow-y: hidden;
   margin-top: 60px;
 }
-
-.app-logo h1, h4{
-  margin-right: 30px;
+,app-logo {
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
+  padding: 10px;
+}
+.app-logo h1 h4{
+  margin: 0 1.5rem 1rem 0;
   }
+
+.app-logo img {
+  width: 75%; 
+  height: auto;
+  margin: 0 1rem 0.5rem;
+}
 
 
 h1 {
