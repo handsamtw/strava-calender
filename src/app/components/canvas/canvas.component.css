@@ -6,15 +6,14 @@
   }
 
   .app-buttons button{
-    margin: 0 0.5rem 0 2rem;
+    margin-right: 4vw;
 
   }
 
 .app-download-button {
-    min-height: 2.3rem;
+    min-height: 2.6rem;
     min-width: 6.5rem;
-    padding: 0 2rem;
-    line-height: 2rem;
+    padding: 0 1.5rem;
     opacity: 90%;
     display: flex;
     justify-content: center;
@@ -22,11 +21,12 @@
     gap: 7px;
     background-color: #fc4c02;
     color: white;
-    border-radius: 10px;
-    font-size: 18px;
+    border-radius: 20px;
+    font-size: 16px;
     border: None;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
+    font-family: 'IBM Plex Mono', monospace
   }
   .app-download-button:hover {
     box-shadow: 0 6px 12px 0 rgba(0,0,0,0.1), 0 5px 15px 0 rgba(0,0,0,0.1);

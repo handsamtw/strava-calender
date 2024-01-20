@@ -2,8 +2,8 @@
   display: flex;
   text-align: center;
   justify-content: center;
-    margin-top: 1rem;
-    font-size: 12px;
+  margin: 1rem 0rem;
+  font-size: 12px;
   }
   
   .app-powered img {
@@ -14,4 +14,8 @@
 
   .app-powered p {
     margin: 12px 6px
+  }
+
+  .app-footer {
+    margin: 2rem 0;
   }

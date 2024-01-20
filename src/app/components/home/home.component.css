@@ -6,61 +6,30 @@
     align-items: center; /* Vertically centers items */
 }
 
-@media only screen 
-    and (max-width : 1024px) 
-    and (max-height: 1366px) { 
-      .container {
-        width: 100vw;
-        height: 100vh;
-      }
-    }
 
-@media only screen and (max-width: 430px) and (max-height: 932px) {
-  .container {
-    display: block;
-  }
-  .container div {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-  
-  .container h1 {
-    font-size:6vw;
-  }
-  
-  .container h4 {
-    font-size:3vw;
-  }
-}
 
 .app-header {
     background-color:#f4f5f6;
-    min-height: 60rem;
-    height: 100%;
     width: 35%;
     text-align: center; 
-    padding: 1rem;
+    padding: 1rem 0rem;
     color: rgb(164, 157, 145);
     font-family: 'IBM Plex Mono', monospace;
     overflow-y: hidden;
-    margin: 5px;
+    min-height: 75rem;
 }
 
 
 .app-canvas {
-  /* background-color:#f4f5f6; */
-  min-height: 60rem;
+  min-height: 75rem;
   width: 65%;
-  height: 100%;
   text-align: center; 
   color: rgb(164, 157, 145);
   font-family: 'IBM Plex Mono', monospace;
   overflow-y: hidden;
-  margin-top: 60px;
 }
-,app-logo {
+
+.app-logo {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -88,3 +57,43 @@ h1 {
     font-weight: 100;
   }
 
+
+
+
+  @media only screen 
+  and (max-width : 1024px) 
+  and (max-height: 1366px) { 
+    
+    .app-canvas {
+      margin-top: 30px;
+    }
+    
+  }
+
+@media only screen and (max-width: 430px) and (max-height: 932px) {
+.container {
+  display: block;
+}
+.container div {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.app-header {
+  min-height: 50rem;
+}
+
+.app-canvas {
+  min-height: 25rem;
+}
+
+
+.container h1 {
+  font-size:6vw;
+}
+
+.container h4 {
+  font-size:3vw;
+}
+}
