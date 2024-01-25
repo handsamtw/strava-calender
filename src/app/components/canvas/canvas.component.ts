@@ -39,9 +39,22 @@ export class CanvasComponent implements OnInit, OnChanges {
       this.imageData = this.calendarService.getCalendarImage();
       const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
       this.selectedImageUrl = this.imageData[theme];
+
+      // Check if it's mobile view and scroll down
+      const isMobileView =
+        window.innerWidth <= 430 && window.innerHeight <= 932;
+
+      if (this.selectedImageUrl != null && isMobileView) {
+        this.scrollToBottom();
+      }
     }
   }
-
+  scrollToBottom() {
+    window.scroll({
+      top: document.body.scrollHeight,
+      behavior: 'auto',
+    });
+  }
   donwloadImage(imageUrl: SafeUrl) {
     const blob = this.calendarService.b64toBlob(imageUrl);
 
