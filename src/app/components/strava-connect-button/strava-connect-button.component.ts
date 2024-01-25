@@ -2,6 +2,8 @@ import { Component, isDevMode } from '@angular/core';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
 import { Environment } from 'src/app/model';
+import { CalendarService } from 'src/app/services/calendar.service';
+import { of, switchMap } from 'rxjs';
 @Component({
   selector: 'app-strava-connect-button',
   templateUrl: './strava-connect-button.component.html',
@@ -9,18 +11,30 @@ import { Environment } from 'src/app/model';
 })
 export class StravaConnectButtonComponent {
   config: Environment;
-  constructor() {
+  constructor(private calendarService: CalendarService) {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
   }
+
   redirect_to_auth_page() {
     const uid = localStorage.getItem('uid');
-    if (uid != null) {
-      window.location.href = '/loading';
-    } else {
-      const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
-      // const authUrl = `https://www.strava.com/oauth/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
-      const authUrl = `https://www.strava.com/oauth/mobile/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
-      window.location.href = authUrl;
-    }
+    this.calendarService.isValidUid(uid).subscribe((response: any) => {
+      const isValid = response['is_valid'] as boolean;
+      if (isValid) {
+        window.location.href = '/loading';
+      } else {
+        const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
+        const authUrl = `https://www.strava.com/oauth/mobile/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
+        window.location.href = authUrl;
+      }
+    });
+
+    // if (uid != null) {
+    //   window.location.href = '/loading';
+    // } else {
+    //   const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
+    //   // const authUrl = `https://www.strava.com/oauth/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
+    //   const authUrl = `https://www.strava.com/oauth/mobile/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
+    //   window.location.href = authUrl;
+    // }
   }
 }
