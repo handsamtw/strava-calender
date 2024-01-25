@@ -35,12 +35,12 @@ export class LoadingComponent implements OnInit {
       .pipe(
         map((imageData) => {
           const modifiedImageObservable: { [key: string]: SafeUrl } = {};
-          for (const theme in imageData) {
-            if (imageData.hasOwnProperty(theme)) {
-              const objectURL = 'data:image/png;base64,' + imageData[theme];
-              modifiedImageObservable[theme] =
-                this.sanitizer.bypassSecurityTrustUrl(objectURL);
-            }
+          this.calendarService.setCalendarStat(imageData['stat']);
+          for (const theme in imageData['image']) {
+            const objectURL =
+              'data:image/png;base64,' + imageData['image'][theme];
+            modifiedImageObservable[theme] =
+              this.sanitizer.bypassSecurityTrustUrl(objectURL);
           }
           return modifiedImageObservable;
         })

@@ -28,7 +28,7 @@ export class ThemesComponent {
   ];
   themeOptions = {
     Energy: 'Reds',
-    Calmness: 'BuGn',
+    Daisy: 'YlGn',
     Forest: 'Greens',
     Ocean: 'Blues',
     Aurora: 'PuBu',
@@ -38,7 +38,7 @@ export class ThemesComponent {
 
   previewColors = [
     ['#F4CDB9', '#EA7759', '#CF4032', '#6A1414'],
-    ['#D5ECE8', '#94CCB9', '#61AB7C', '#1F4D25'],
+    ['#FBFDD1', '#D3EAA5', '#73B672', '#1F4D25'],
     ['#CCE7C1', '#86C17D', '#45894D', '#1F4D25'],
     ['#AAC9DF', '#6A9FC9', '#3F75B3', '#183976'],
     ['#D6D6E6', '#7AA4C9', '#3E7DB3', '#1A4267'],

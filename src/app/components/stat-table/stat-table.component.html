@@ -1,0 +1,22 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+  <!-- Year Column -->
+  <ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef>Year</th>
+    <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+  </ng-container>
+
+  <!-- Count Column -->
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef>Total Activity</th>
+    <td mat-cell *matCellDef="let element">{{ element.count }}</td>
+  </ng-container>
+
+  <!-- Distance Column -->
+  <ng-container matColumnDef="distance">
+    <th mat-header-cell *matHeaderCellDef>Total Distance (km)</th>
+    <td mat-cell *matCellDef="let element">{{ element.distance }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

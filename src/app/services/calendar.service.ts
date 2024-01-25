@@ -5,7 +5,13 @@ import { Buffer } from 'buffer';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
 import { Observable, switchMap } from 'rxjs';
-import { CalendarImage, Environment, Error } from '../model';
+import {
+  CalendarImageData,
+  CalendarImage,
+  CalendarStat,
+  Environment,
+  Error,
+} from '../model';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +22,20 @@ export class CalendarService {
   }
   // write an  environment type when available
   private config: Environment;
-  private imageData: CalendarImage = {};
+  private imageData!: CalendarImage;
+  private calendarStat!: CalendarStat[];
   private error: Error | undefined = undefined;
 
   getUserId(code: string): Observable<string> {
     const uid_url = `${this.config.BACKEND_ENDPOINT}/uid?code=${code}`;
     return this.http.get<string>(uid_url);
+  }
+
+  getCalendarStat(): CalendarStat[] {
+    return this.calendarStat;
+  }
+  setCalendarStat(stat: CalendarStat[]) {
+    this.calendarStat = stat;
   }
 
   getCalendarImage(): CalendarImage {
@@ -36,7 +50,7 @@ export class CalendarService {
   setError(error: Error) {
     this.error = error;
   }
-  fetchCalendarImage(code: string): Observable<CalendarImage> {
+  fetchCalendarImage(code: string): Observable<CalendarImageData> {
     let uid: string = localStorage.getItem('uid') ?? '';
 
     if (uid === '') {
@@ -52,7 +66,7 @@ export class CalendarService {
     }
   }
 
-  fetchCalendarImageFromUserId(uid: string): Observable<CalendarImage> {
+  fetchCalendarImageFromUserId(uid: string): Observable<CalendarImageData> {
     const selectedSport = JSON.parse(
       localStorage.getItem('selectedSport') ?? '["Run"]'
     );
@@ -61,7 +75,7 @@ export class CalendarService {
       ','
     )}&theme=All&uid=${uid}`;
 
-    return this.http.get<CalendarImage>(url);
+    return this.http.get<CalendarImageData>(url);
   }
 
   b64toBlob(base64ImageUrl: SafeUrl) {

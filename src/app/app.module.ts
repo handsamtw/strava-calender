@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
+
 //  All self defined component
 import { ThemePreviewComponent } from './components/theme-preview/theme-preview.component';
 import { HomeComponent } from './components/home/home.component';
@@ -20,6 +22,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { AppComponent } from './app.component';
 import { ThemesComponent } from './components/themes/themes.component';
 import { StravaConnectButtonComponent } from './components/strava-connect-button/strava-connect-button.component';
+import { StatTableComponent } from './components/stat-table/stat-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +34,7 @@ import { StravaConnectButtonComponent } from './components/strava-connect-button
     LoadingComponent,
     HomeComponent,
     ThemePreviewComponent,
+    StatTableComponent,
   ],
   imports: [
     FormsModule,
@@ -44,6 +48,7 @@ import { StravaConnectButtonComponent } from './components/strava-connect-button
     MatOptionModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
