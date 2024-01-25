@@ -8,7 +8,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { SafeUrl } from '@angular/platform-browser';
-import { CalendarImage, Error } from '../../model';
+import { CalendarImage } from '../../model';
 
 @Component({
   selector: 'app-canvas',
@@ -18,6 +18,10 @@ import { CalendarImage, Error } from '../../model';
 export class CanvasComponent implements OnInit, OnChanges {
   selectedImageUrl?: SafeUrl;
   imageData: CalendarImage = {};
+  selectedSport = JSON.parse(
+    localStorage.getItem('selectedSport') ?? '["Run"]'
+  ).join(',');
+
   @Input() currentTheme: string = '';
   constructor(
     private snackBar: MatSnackBar,

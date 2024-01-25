@@ -1,4 +1,5 @@
-<div *ngIf="selectedImageUrl">
+<div class="app-canvas" *ngIf="selectedImageUrl">
+  <div>Showing off your workout for {{ selectedSport }}!</div>
   <div class="app-buttons">
     <button
       class="app-download-button"
@@ -21,10 +22,13 @@
   </div>
 
   <div>
+    <div>Sam Liao's workout on Strava</div>
+
     <img
       class="calendar-image"
       *ngIf="selectedImageUrl"
       [src]="selectedImageUrl"
     />
   </div>
+  <app-stat-table></app-stat-table>
 </div>
