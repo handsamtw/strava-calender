@@ -14,13 +14,15 @@
     padding: 10px 10px 20px;
     font-size: 16px;
   }
+
+  .no-border {
+    border: none;
+  }
   
   
   .app-themes  span {
-    background-color: var(--header-bg);
     padding: 0 1rem;
-    font-size: 1vw;
-    
+    font-size: 1vw;    
     margin: -2.2rem -1rem 1rem;
     
   }
