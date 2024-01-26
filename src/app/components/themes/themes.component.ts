@@ -9,9 +9,7 @@ import { Output, EventEmitter } from '@angular/core';
 export class ThemesComponent {
   @Output() themeChangeEvent = new EventEmitter<string>();
   selectedTheme = localStorage.getItem('selectedTheme') ?? 'Reds';
-  selectedSport = JSON.parse(
-    localStorage.getItem('selectedSport') ?? '["Run"]'
-  );
+  selectedSport = localStorage.getItem('selectedSport') || 'Run';
 
   sportTypes = [
     'Run',
@@ -58,6 +56,6 @@ export class ThemesComponent {
     this.themeChangeEvent.emit(selectedTheme);
   }
   setSelectedSport() {
-    localStorage.setItem('selectedSport', JSON.stringify(this.selectedSport));
+    localStorage.setItem('selectedSport', this.selectedSport);
   }
 }
