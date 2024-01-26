@@ -12,9 +12,24 @@
   </ng-container>
 
   <!-- Distance Column -->
-  <ng-container matColumnDef="distance">
-    <th mat-header-cell *matHeaderCellDef>Total Distance (km)</th>
-    <td mat-cell *matCellDef="let element">{{ element.distance }}</td>
+  <ng-container matColumnDef="totalEffort">
+    <th mat-header-cell *matHeaderCellDef>
+      {{
+        dataSource[0].distance !== undefined ? "Total Distance" : "Total Time"
+      }}
+    </th>
+    <td mat-cell *matCellDef="let element">
+      {{
+        element?.distance !== undefined
+          ? (element.distance / 1000 | number : "1.0-0") + " km"
+          : ""
+      }}
+      {{
+        element?.moving_time !== undefined
+          ? (element.moving_time / 60 | number : "1.0-0") + " min"
+          : ""
+      }}
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

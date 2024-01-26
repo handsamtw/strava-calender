@@ -12,5 +12,6 @@ export type CalendarImage = {
 export type CalendarStat = {
   year: number;
   count: number;
-  distance: number;
+  distance?: number;
+  moving_time?: number;
 };

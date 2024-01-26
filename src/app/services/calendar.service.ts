@@ -69,7 +69,6 @@ export class CalendarService {
 
   fetchCalendarImageFromUserId(uid: string): Observable<CalendarImageData> {
     const selectedSport = localStorage.getItem('selectedSport') || 'Run';
-    console.log(selectedSport);
     const calendarImageEndpoint = `${this.config.BACKEND_ENDPOINT}/calendar`;
     const url = `${calendarImageEndpoint}?sport_type=${selectedSport}&theme=All&uid=${uid}`;
 

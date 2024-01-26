@@ -8,7 +8,7 @@ import { CalendarStat } from 'src/app/model';
 })
 export class StatTableComponent {
   constructor(private calendarService: CalendarService) {}
-  displayedColumns: string[] = ['year', 'count', 'distance'];
+  displayedColumns: string[] = ['year', 'count', 'totalEffort'];
   dataSource: CalendarStat[] = [];
 
   ngOnInit() {
