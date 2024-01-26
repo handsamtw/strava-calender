@@ -51,10 +51,11 @@ export class LoadingComponent implements OnInit {
           this.isLoading = false;
           this.router.navigate(['/']);
         },
-        ({ error, status, message }) => {
+        ({ error, status }) => {
+          console.log(error, status);
           this.isLoading = false;
           this.calendarService.setError({
-            error: error.error,
+            error: error['detail'],
             status: status,
           });
           this.router.navigate(['/']);
