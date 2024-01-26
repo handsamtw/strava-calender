@@ -13,6 +13,7 @@
         [checked]="theme[1] === selectedTheme"
         (change)="setSelectTheme(theme[1])"
         class="app-radio"
+        [name]="'themeGroup'"
       />
 
       {{ theme[0] }}
@@ -25,7 +26,6 @@
   <mat-select
     [(ngModel)]="selectedSport"
     (selectionChange)="setSelectedSport()"
-    multiple
   >
     <mat-option *ngFor="let sport of sportTypes" [value]="sport">
       <img
