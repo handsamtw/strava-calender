@@ -8,11 +8,13 @@ import { CalendarService } from 'src/app/services/calendar.service';
   styleUrls: ['./themes.component.css'],
 })
 export class ThemesComponent {
-  constructor(private calendarService: CalendarService) {}
   @Output() themeChangeEvent = new EventEmitter<string>();
   selectedTheme = 'Reds';
-  selectedSport = 'Run';
-  selectedUnit = 'Metric';
+
+  selectedSport = localStorage.getItem('sportType') ?? 'Run';
+  selectedUnit = localStorage.getItem('unit') ?? 'Metric';
+
+  // selectedUnit = localStorage.getItem('unit') || 'Metric';
   unitOptions = ['Metric', 'Imperial'];
   sportTypes = [
     'Run',
@@ -51,16 +53,19 @@ export class ThemesComponent {
     return Object.entries(this.themeOptions);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.setItem('sportType', this.selectedSport);
+    localStorage.setItem('unit', this.selectedUnit);
+  }
 
   setSelectTheme(selectedTheme: string) {
     this.selectedTheme = selectedTheme;
     this.themeChangeEvent.emit(selectedTheme);
   }
   setSelectedSport(selectedSport: string) {
-    this.calendarService.setCalendarConfig({ sportType: selectedSport });
+    localStorage.setItem('sportType', selectedSport);
   }
   setSelectedUnit(selectedUnit: string) {
-    this.calendarService.setCalendarConfig({ unit: selectedUnit });
+    localStorage.setItem('unit', selectedUnit);
   }
 }

@@ -19,23 +19,13 @@ import {
 export class CalendarService {
   constructor(private http: HttpClient) {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
-    this.calendarConfig = { sportType: 'Run', unit: 'metric' };
   }
-  // write an  environment type when available
+
   private config: Environment;
-  private calendarConfig: any;
   private imageData!: CalendarImage;
   private calendarStat!: CalendarStat[];
   private error: Error | undefined = undefined;
 
-  getCalendarConfig(key: 'sportType' | 'unit'): string {
-    return this.calendarConfig[key];
-  }
-
-  setCalendarConfig(config: { sportType?: string; unit?: string }) {
-    this.calendarConfig = { ...this.calendarConfig, ...config };
-    console.log(this.calendarConfig);
-  }
   isValidUid(uid: string | null) {
     if (uid == null) {
       return of({ is_valid: false });
@@ -80,12 +70,11 @@ export class CalendarService {
   }
 
   fetchCalendarImageFromUserId(uid: string): Observable<CalendarImageData> {
-    const selectedSport = this.calendarConfig['sportType'];
-    const unit = this.calendarConfig['unit'];
-    console.log(this.calendarConfig);
+    const sport = localStorage.getItem('sportType');
+    const unit = localStorage.getItem('unit');
+
     const calendarImageEndpoint = `${this.config.BACKEND_ENDPOINT}/calendar`;
-    const url = `${calendarImageEndpoint}?sport_type=${selectedSport}&unit=${unit}&theme=All&uid=${uid}`;
-    console.log(url);
+    const url = `${calendarImageEndpoint}?sport_type=${sport}&unit=${unit}&theme=All&uid=${uid}`;
     return this.http.get<CalendarImageData>(url);
   }
 

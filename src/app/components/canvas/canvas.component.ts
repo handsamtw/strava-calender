@@ -18,7 +18,7 @@ import { CalendarImage } from '../../model';
 export class CanvasComponent implements OnInit, OnChanges {
   selectedImageUrl?: SafeUrl;
   imageData: CalendarImage = {};
-  sportType = this.calendarService.getCalendarConfig('sportType');
+  sportType = localStorage.getItem('sportType');
 
   @Input() currentTheme: string = '';
   constructor(
