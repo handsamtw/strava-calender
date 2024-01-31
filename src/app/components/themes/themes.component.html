@@ -1,11 +1,11 @@
 <div class="app-themes no-border">
-  <span>Select a sport:</span>
+  <span>Sport</span>
 
   <mat-form-field>
     <!-- <mat-label>Select sport</mat-label> -->
     <mat-select
       [(ngModel)]="selectedSport"
-      (selectionChange)="setSelectedSport()"
+      (selectionChange)="setSelectedSport(selectedSport)"
     >
       <mat-option *ngFor="let sport of sportTypes" [value]="sport">
         <img
@@ -17,10 +17,24 @@
       >
     </mat-select>
   </mat-form-field>
+
+  <span>Unit</span>
+
+  <mat-form-field>
+    <!-- <mat-label>Select sport</mat-label> -->
+    <mat-select
+      [(ngModel)]="selectedUnit"
+      (selectionChange)="setSelectedUnit(selectedUnit)"
+    >
+      <mat-option *ngFor="let unit of unitOptions" [value]="unit">{{
+        unit
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
 </div>
 
 <div class="app-themes">
-  <span>Select a theme:</span>
+  <span style="margin-top: -2.5rem">Select a theme:</span>
 
   <div
     class="app-themes-list"

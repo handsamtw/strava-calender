@@ -1,5 +1,6 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-themes',
@@ -7,10 +8,12 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./themes.component.css'],
 })
 export class ThemesComponent {
+  constructor(private calendarService: CalendarService) {}
   @Output() themeChangeEvent = new EventEmitter<string>();
-  selectedTheme = localStorage.getItem('selectedTheme') ?? 'Reds';
-  selectedSport = localStorage.getItem('selectedSport') || 'Run';
-
+  selectedTheme = 'Reds';
+  selectedSport = 'Run';
+  selectedUnit = 'Metric';
+  unitOptions = ['Metric', 'Imperial'];
   sportTypes = [
     'Run',
     'Ride',
@@ -52,10 +55,12 @@ export class ThemesComponent {
 
   setSelectTheme(selectedTheme: string) {
     this.selectedTheme = selectedTheme;
-    localStorage.setItem('selectedTheme', this.selectedTheme);
     this.themeChangeEvent.emit(selectedTheme);
   }
-  setSelectedSport() {
-    localStorage.setItem('selectedSport', this.selectedSport);
+  setSelectedSport(selectedSport: string) {
+    this.calendarService.setCalendarConfig({ sportType: selectedSport });
+  }
+  setSelectedUnit(selectedUnit: string) {
+    this.calendarService.setCalendarConfig({ unit: selectedUnit });
   }
 }
