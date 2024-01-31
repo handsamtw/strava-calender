@@ -21,10 +21,9 @@
   
   
   .app-themes  span {
-    padding: 0 1rem;
+    padding: 0 0.8rem;
     font-size: 1vw;    
-    margin:-2.2rem -0.5rem 1rem;
-    
+    margin: 0rem -0.5rem 0.8rem
   }
   @media only screen and (max-width: 430px) and (max-height: 932px) {
     .app-themes span {

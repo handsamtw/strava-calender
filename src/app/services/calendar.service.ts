@@ -20,11 +20,12 @@ export class CalendarService {
   constructor(private http: HttpClient) {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
   }
-  // write an  environment type when available
+
   private config: Environment;
   private imageData!: CalendarImage;
   private calendarStat!: CalendarStat[];
   private error: Error | undefined = undefined;
+
   isValidUid(uid: string | null) {
     if (uid == null) {
       return of({ is_valid: false });
@@ -35,6 +36,7 @@ export class CalendarService {
   }
   getUserId(code: string): Observable<string> {
     const uid_url = `${this.config.BACKEND_ENDPOINT}/uid?code=${code}`;
+    console.log(uid_url);
     return this.http.get<string>(uid_url);
   }
 
@@ -68,10 +70,11 @@ export class CalendarService {
   }
 
   fetchCalendarImageFromUserId(uid: string): Observable<CalendarImageData> {
-    const selectedSport = localStorage.getItem('selectedSport') || 'Run';
-    const calendarImageEndpoint = `${this.config.BACKEND_ENDPOINT}/calendar`;
-    const url = `${calendarImageEndpoint}?sport_type=${selectedSport}&theme=All&uid=${uid}`;
+    const sport = localStorage.getItem('sportType');
+    const unit = localStorage.getItem('unit');
 
+    const calendarImageEndpoint = `${this.config.BACKEND_ENDPOINT}/calendar`;
+    const url = `${calendarImageEndpoint}?sport_type=${sport}&unit=${unit}&theme=All&uid=${uid}`;
     return this.http.get<CalendarImageData>(url);
   }
 

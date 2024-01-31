@@ -1,5 +1,6 @@
 import { Component, OnChanges, SimpleChanges } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
+import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-themes',
@@ -8,9 +9,13 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class ThemesComponent {
   @Output() themeChangeEvent = new EventEmitter<string>();
-  selectedTheme = localStorage.getItem('selectedTheme') ?? 'Reds';
-  selectedSport = localStorage.getItem('selectedSport') || 'Run';
+  selectedTheme = 'Reds';
 
+  selectedSport = localStorage.getItem('sportType') ?? 'Run';
+  selectedUnit = localStorage.getItem('unit') ?? 'Metric';
+
+  // selectedUnit = localStorage.getItem('unit') || 'Metric';
+  unitOptions = ['Metric', 'Imperial'];
   sportTypes = [
     'Run',
     'Ride',
@@ -48,14 +53,19 @@ export class ThemesComponent {
     return Object.entries(this.themeOptions);
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    localStorage.setItem('sportType', this.selectedSport);
+    localStorage.setItem('unit', this.selectedUnit);
+  }
 
   setSelectTheme(selectedTheme: string) {
     this.selectedTheme = selectedTheme;
-    localStorage.setItem('selectedTheme', this.selectedTheme);
     this.themeChangeEvent.emit(selectedTheme);
   }
-  setSelectedSport() {
-    localStorage.setItem('selectedSport', this.selectedSport);
+  setSelectedSport(selectedSport: string) {
+    localStorage.setItem('sportType', selectedSport);
+  }
+  setSelectedUnit(selectedUnit: string) {
+    localStorage.setItem('unit', selectedUnit);
   }
 }
