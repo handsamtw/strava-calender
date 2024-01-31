@@ -36,7 +36,7 @@ export class CanvasComponent implements OnInit, OnChanges {
     } else {
       this.imageData = this.calendarService.getCalendarImage();
       const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
-      this.selectedImageUrl = this.imageData[theme];
+      this.selectedImageUrl = this.imageData?.[theme] ?? '';
 
       // Check if it's mobile view and scroll down
       const isMobileView =
