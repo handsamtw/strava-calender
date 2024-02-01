@@ -1,13 +1,3 @@
-.app-canvas {
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
-}
-
-.app-canvas div {
-  margin: 1rem 0rem;
-}
-
 .app-buttons {
     display: flex;
     align-items: center;

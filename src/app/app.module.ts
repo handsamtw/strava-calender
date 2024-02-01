@@ -22,7 +22,6 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { AppComponent } from './app.component';
 import { ThemesComponent } from './components/themes/themes.component';
 import { StravaConnectButtonComponent } from './components/strava-connect-button/strava-connect-button.component';
-import { StatTableComponent } from './components/stat-table/stat-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +33,6 @@ import { StatTableComponent } from './components/stat-table/stat-table.component
     LoadingComponent,
     HomeComponent,
     ThemePreviewComponent,
-    StatTableComponent,
   ],
   imports: [
     FormsModule,
