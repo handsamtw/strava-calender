@@ -35,7 +35,6 @@ export class LoadingComponent implements OnInit {
       .pipe(
         map((imageData) => {
           const modifiedImageObservable: { [key: string]: SafeUrl } = {};
-          this.calendarService.setCalendarStat(imageData['stat']);
           for (const theme in imageData['image']) {
             const objectURL =
               'data:image/png;base64,' + imageData['image'][theme];
