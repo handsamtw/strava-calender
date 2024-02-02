@@ -17,16 +17,16 @@ import { CalendarImage } from '../../model';
 })
 export class CanvasComponent implements OnInit, OnChanges {
   selectedImageUrl?: SafeUrl;
-  imageData: CalendarImage = {};
+  imageData: CalendarImage | null = null;
   sportType = localStorage.getItem('sportType');
-
+  isLoading = false;
   @Input() currentTheme: string = '';
   constructor(
     private snackBar: MatSnackBar,
     private calendarService: CalendarService
   ) {}
   ngOnChanges(changes: SimpleChanges): void {
-    this.selectedImageUrl = this.imageData[this.currentTheme];
+    this.selectedImageUrl = this.imageData?.[this.currentTheme];
   }
   ngOnInit(): void {
     const error = this.calendarService.getError();
@@ -34,9 +34,14 @@ export class CanvasComponent implements OnInit, OnChanges {
       const errorMessage = `${error['status']}: ${error['error']}`;
       this.showSnackbar(errorMessage, 5000);
     } else {
-      this.imageData = this.calendarService.getCalendarImage();
-      const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
-      this.selectedImageUrl = this.imageData?.[theme] ?? '';
+      this.calendarService.getIsLoading().subscribe((isLoading) => {
+        this.isLoading = isLoading;
+      });
+      this.calendarService.getCalendarImage().subscribe((data) => {
+        this.imageData = data;
+        const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
+        this.selectedImageUrl = data?.[theme] ?? '';
+      });
 
       // Check if it's mobile view and scroll down
       const isMobileView =

@@ -4,7 +4,7 @@ import { SafeUrl } from '@angular/platform-browser';
 import { Buffer } from 'buffer';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
-import { Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, of, switchMap } from 'rxjs';
 import { CalendarImageData, CalendarImage, Environment, Error } from '../model';
 
 @Injectable({
@@ -16,10 +16,27 @@ export class CalendarService {
   }
 
   private config: Environment;
-  private imageData!: CalendarImage;
+  private imageSubject = new BehaviorSubject<CalendarImage | null>(null);
+  private isLoading$ = new BehaviorSubject<boolean>(false);
+  private isValidUid$ = new BehaviorSubject<boolean>(false);
   private error: Error | undefined = undefined;
 
-  isValidUid(uid: string | null) {
+  getIsValidUid() {
+    return this.isValidUid$.asObservable();
+  }
+
+  setIsValidUid(isValid: boolean): void {
+    this.isValidUid$.next(isValid);
+  }
+  getIsLoading() {
+    return this.isLoading$.asObservable();
+  }
+
+  setIsLoading(isLoading: boolean) {
+    return this.isLoading$.next(isLoading);
+  }
+
+  checkIsValidUid(uid: string | null) {
     if (uid == null) {
       return of({ is_valid: false });
     }
@@ -29,15 +46,14 @@ export class CalendarService {
   }
   getUserId(code: string): Observable<string> {
     const uid_url = `${this.config.BACKEND_ENDPOINT}/uid?code=${code}`;
-    console.log(uid_url);
     return this.http.get<string>(uid_url);
   }
 
-  getCalendarImage(): CalendarImage {
-    return this.imageData;
+  getCalendarImage(): Observable<CalendarImage | null> {
+    return this.imageSubject.asObservable();
   }
   setCalendarImage(data: CalendarImage) {
-    this.imageData = data;
+    this.imageSubject.next(data);
   }
   getError(): Error | undefined {
     return this.error;

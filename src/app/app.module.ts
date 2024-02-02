@@ -22,6 +22,7 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { AppComponent } from './app.component';
 import { ThemesComponent } from './components/themes/themes.component';
 import { StravaConnectButtonComponent } from './components/strava-connect-button/strava-connect-button.component';
+import { GenerateButtonComponent } from './components/generate-button/generate-button.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,9 +31,9 @@ import { StravaConnectButtonComponent } from './components/strava-connect-button
     FooterComponent,
     GithubButtonComponent,
     CanvasComponent,
-    LoadingComponent,
     HomeComponent,
     ThemePreviewComponent,
+    GenerateButtonComponent,
   ],
   imports: [
     FormsModule,

@@ -11,21 +11,13 @@ import { of, switchMap } from 'rxjs';
 })
 export class StravaConnectButtonComponent {
   config: Environment;
-  constructor(private calendarService: CalendarService) {
+  constructor() {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
   }
 
   redirect_to_auth_page() {
-    const uid = localStorage.getItem('uid');
-    this.calendarService.isValidUid(uid).subscribe((response: any) => {
-      const isValid = response['is_valid'] as boolean;
-      if (isValid) {
-        window.location.href = '/loading';
-      } else {
-        const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
-        const authUrl = `https://www.strava.com/oauth/mobile/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
-        window.location.href = authUrl;
-      }
-    });
+    const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
+    const authUrl = `https://www.strava.com/oauth/mobile/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
+    window.location.href = authUrl;
   }
 }
