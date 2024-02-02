@@ -41,7 +41,7 @@ export class CalendarService {
       return of({ is_valid: false });
     }
     const url = `${this.config.BACKEND_ENDPOINT}/check_valid_uid?uid=${uid}`;
-    console.log(url);
+    // console.log(url);
     return this.http.get(url);
   }
   getUserId(code: string): Observable<string> {
@@ -60,15 +60,6 @@ export class CalendarService {
   }
   setError(error: Error) {
     this.error = error;
-  }
-  fetchCalendarImage(code: string): Observable<CalendarImageData> {
-    return this.getUserId(code).pipe(
-      switchMap((response: any) => {
-        const uid = response['uid'];
-        localStorage.setItem('uid', uid); // Save the retrieved userID
-        return this.fetchCalendarImageFromUserId(uid);
-      })
-    );
   }
 
   fetchCalendarImageFromUserId(uid: string): Observable<CalendarImageData> {
