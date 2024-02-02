@@ -20,7 +20,7 @@ export class StravaConnectButtonComponent {
     this.calendarService.isValidUid(uid).subscribe((response: any) => {
       const isValid = response['is_valid'] as boolean;
       if (isValid) {
-        window.location.href = '/loading';
+        window.location.href = '/';
       } else {
         const redirectUriAfterAuth = this.config.REDIRECT_URI_AFTER_AUTH;
         const authUrl = `https://www.strava.com/oauth/mobile/authorize?client_id=117383&response_type=code&redirect_uri=${redirectUriAfterAuth}&approval_prompt=force&scope=activity:read_all`;
