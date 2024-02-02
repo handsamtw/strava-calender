@@ -1,11 +1,12 @@
 .gradient-button {
     min-height: 2.8rem;
     min-width: 6.8rem;
-    font-family: 'IBM Plex Mono';
+    
     font-size: 1.2rem;
     color: #fff;
     background: linear-gradient(to right, #fc4c02, #ff8c3a);
     padding: 10px 20px; 
+    margin: 1rem auto;
     border: none;
     border-radius: 5px; 
     cursor: pointer;
