@@ -26,8 +26,12 @@ export class LoadingComponent implements OnInit {
       this.calendarService.getUserId(code).subscribe((response: any) => {
         const uid = response['uid'];
         localStorage.setItem('uid', uid);
+        localStorage.setItem('uidValid', 'true');
       });
     }
-    this.router.navigate(['/']);
+    // to give home component a buffer to catch latest localstorage value
+    setInterval(() => {
+      this.router.navigate(['/']);
+    }, 500);
   }
 }

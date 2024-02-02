@@ -14,8 +14,7 @@ export class ThemesComponent {
   selectedSport = localStorage.getItem('sportType') ?? 'Run';
   selectedUnit = localStorage.getItem('unit') ?? 'Metric';
 
-  // selectedUnit = localStorage.getItem('unit') || 'Metric';
-  unitOptions = ['Metric', 'Imperial'];
+  unitOptions = ['Imperial', 'Metric'];
   sportTypes = [
     'Run',
     'Ride',

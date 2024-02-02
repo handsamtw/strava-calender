@@ -8,7 +8,9 @@ import { CalendarService } from 'src/app/services/calendar.service';
 export class HomeComponent implements OnInit {
   isUidValid = localStorage.getItem('uidValid') == 'true' ? true : false;
   constructor(private calendarService: CalendarService) {}
+
   ngOnInit(): void {
+    console.log(this.isUidValid);
     if (!this.isUidValid) {
       const uid = localStorage.getItem('uid');
       this.calendarService.checkIsValidUid(uid).subscribe((response: any) => {

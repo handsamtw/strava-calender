@@ -29,6 +29,8 @@ export class CanvasComponent implements OnInit, OnChanges {
     this.selectedImageUrl = this.imageData?.[this.currentTheme];
   }
   ngOnInit(): void {
+    // Check if it's mobile view and scroll down
+    const isMobileView = window.innerWidth <= 430 && window.innerHeight <= 932;
     const error = this.calendarService.getError();
     if (error) {
       const errorMessage = `${error['status']}: ${error['error']}`;
@@ -46,10 +48,6 @@ export class CanvasComponent implements OnInit, OnChanges {
         this.selectedImageUrl = data?.[theme];
         this.sportType = localStorage.getItem('sportType');
       });
-
-      // Check if it's mobile view and scroll down
-      const isMobileView =
-        window.innerWidth <= 430 && window.innerHeight <= 932;
     }
   }
   scrollToBottom() {
