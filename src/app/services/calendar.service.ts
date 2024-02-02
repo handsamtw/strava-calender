@@ -41,6 +41,7 @@ export class CalendarService {
       return of({ is_valid: false });
     }
     const url = `${this.config.BACKEND_ENDPOINT}/check_valid_uid?uid=${uid}`;
+    console.log(url);
     return this.http.get(url);
   }
   getUserId(code: string): Observable<string> {

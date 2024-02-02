@@ -11,7 +11,7 @@ import { of, switchMap } from 'rxjs';
 })
 export class StravaConnectButtonComponent {
   config: Environment;
-  constructor(private calendarService: CalendarService) {
+  constructor() {
     this.config = isDevMode() ? DevEnvironment : ProdEnvironment;
   }
 
