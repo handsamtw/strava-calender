@@ -94,6 +94,6 @@ How to run the frontend locally
 - Make sure you have Angular CLI install in your development environment
 - Run `npm install`, it might take a long time, so feel free to setup [backend API repository](https://github.com/handsamtw/strava-calender-api) at the same time.
 - Run `ng serve` and you suppose to be able to access http://localhost:4200
-- (Opt.) You might need to adjust your node version to greater that node 17 to make Angular CLI version compatible.
+- (Opt.) The Angular CLI requires a minimum of v18.13. node version.
 - (Opt.) A compreehensive setup of [backend API repository](https://github.com/handsamtw/strava-calender-api)
 - (Opt.) Running the backend server while developing the frontend
