@@ -1,31 +1,43 @@
-<div class="app-canvas" *ngIf="selectedImageUrl">
-  <div class="app-buttons">Share your amazing {{ sportType }} journey!</div>
-  <div class="app-buttons">
-    <button
-      class="app-download-button"
-      type="button"
-      (click)="copyImage(selectedImageUrl)"
-    >
-      <mat-icon>file_copy</mat-icon>
-
-      Copy
-    </button>
-    <button
-      class="app-download-button"
-      type="button"
-      (click)="donwloadImage(selectedImageUrl)"
-    >
-      <mat-icon>cloud_download</mat-icon>
-
-      Download
-    </button>
-  </div>
-
-  <div>
+<ng-container *ngIf="isLoading; else loadedContent">
+  <div class="loading-container">
     <img
-      class="calendar-image"
-      *ngIf="selectedImageUrl"
-      [src]="selectedImageUrl"
+      class="holdup-gif"
+      alt="Loading..."
+      src="../../../assets/loading.gif"
     />
   </div>
-</div>
+</ng-container>
+
+<ng-template #loadedContent>
+  <div class="app-canvas" *ngIf="selectedImageUrl">
+    <div class="app-buttons">Share your amazing {{ sportType }} journey!</div>
+    <div class="app-buttons">
+      <button
+        class="app-download-button"
+        type="button"
+        (click)="copyImage(selectedImageUrl)"
+      >
+        <mat-icon>file_copy</mat-icon>
+
+        Copy
+      </button>
+      <button
+        class="app-download-button"
+        type="button"
+        (click)="donwloadImage(selectedImageUrl)"
+      >
+        <mat-icon>cloud_download</mat-icon>
+
+        Download
+      </button>
+    </div>
+
+    <div>
+      <img
+        class="calendar-image"
+        *ngIf="selectedImageUrl"
+        [src]="selectedImageUrl"
+      />
+    </div>
+  </div>
+</ng-template>

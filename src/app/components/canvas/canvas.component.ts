@@ -19,7 +19,7 @@ export class CanvasComponent implements OnInit, OnChanges {
   selectedImageUrl?: SafeUrl;
   imageData: CalendarImage | null = null;
   sportType = localStorage.getItem('sportType');
-
+  isLoading = false;
   @Input() currentTheme: string = '';
   constructor(
     private snackBar: MatSnackBar,
@@ -34,6 +34,17 @@ export class CanvasComponent implements OnInit, OnChanges {
       const errorMessage = `${error['status']}: ${error['error']}`;
       this.showSnackbar(errorMessage, 5000);
     } else {
+      const uid = localStorage.getItem('uid');
+      this.calendarService.checkIsValidUid(uid).subscribe((response: any) => {
+        const isValid = response['is_valid'] as boolean;
+        if (isValid) {
+          this.showSnackbar('Your Strava account is connected', 2000);
+        }
+      });
+
+      this.calendarService.getIsLoading().subscribe((isLoading) => {
+        this.isLoading = isLoading;
+      });
       this.calendarService.getCalendarImage().subscribe((data) => {
         this.imageData = data;
         const theme = localStorage.getItem('selectedTheme') ?? 'Reds';

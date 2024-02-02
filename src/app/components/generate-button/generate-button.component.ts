@@ -18,6 +18,7 @@ export class GenerateButtonComponent {
 
   generate() {
     const uid = localStorage.getItem('uid');
+    this.calendarService.setIsLoading(true);
     let calendarImageObservable =
       this.calendarService.fetchCalendarImageFromUserId(uid as string);
 
@@ -37,6 +38,7 @@ export class GenerateButtonComponent {
       .subscribe(
         (modifiedImageObservable) => {
           this.calendarService.setCalendarImage(modifiedImageObservable);
+          this.calendarService.setIsLoading(false);
         },
         ({ error, status }) => {
           console.log(error, status);

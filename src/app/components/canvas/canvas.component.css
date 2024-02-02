@@ -42,3 +42,22 @@
     width: 90%;
     height:90%;
   }
+
+
+
+
+.loading-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  /* Additional styles for the container if needed */
+  width: 100%; /* Set width as needed */
+  height: 400px; /* Set height as needed */
+  padding: 30px 0px;
+}
+
+.holdup-gif {
+  max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+  max-height: 100%; /* Ensure the image doesn't exceed the container's height */
+  /* Additional styles for the image if needed */
+}

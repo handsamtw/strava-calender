@@ -17,10 +17,26 @@ export class CalendarService {
 
   private config: Environment;
   private imageSubject = new BehaviorSubject<CalendarImage | null>(null);
-
+  private isLoading$ = new BehaviorSubject<boolean>(false);
+  private isValidUid$ = new BehaviorSubject<boolean>(false);
   private error: Error | undefined = undefined;
 
-  isValidUid(uid: string | null) {
+  getIsValidUid() {
+    return this.isValidUid$.asObservable();
+  }
+
+  setIsValidUid(isValid: boolean): void {
+    this.isValidUid$.next(isValid);
+  }
+  getIsLoading() {
+    return this.isLoading$.asObservable();
+  }
+
+  setIsLoading(isLoading: boolean) {
+    return this.isLoading$.next(isLoading);
+  }
+
+  checkIsValidUid(uid: string | null) {
     if (uid == null) {
       return of({ is_valid: false });
     }
