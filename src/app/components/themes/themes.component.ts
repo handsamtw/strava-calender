@@ -12,7 +12,7 @@ export class ThemesComponent {
   selectedTheme = 'Reds';
 
   selectedSport = localStorage.getItem('sportType') ?? 'Run';
-  selectedUnit = localStorage.getItem('unit') ?? 'Metric';
+  selectedUnit = localStorage.getItem('unit') ?? 'Imperial';
 
   unitOptions = ['Imperial', 'Metric'];
   sportTypes = [
