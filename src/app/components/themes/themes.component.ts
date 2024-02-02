@@ -59,6 +59,7 @@ export class ThemesComponent {
   }
 
   setSelectTheme(selectedTheme: string) {
+    localStorage.setItem('selectedTheme', selectedTheme);
     this.selectedTheme = selectedTheme;
     this.themeChangeEvent.emit(selectedTheme);
   }
