@@ -23,42 +23,47 @@ export class LoadingComponent implements OnInit {
     const code = params.get('code');
 
     let calendarImageObservable;
-
     if (code === null) {
       const uid = localStorage.getItem('uid');
       calendarImageObservable =
         this.calendarService.fetchCalendarImageFromUserId(uid as string);
     } else {
-      calendarImageObservable = this.calendarService.fetchCalendarImage(code);
+      this.calendarService.getUserId(code).subscribe((response: any) => {
+        const uid = response['uid'];
+        localStorage.setItem('uid', uid);
+        this.isLoading = false;
+        this.router.navigate(['/']);
+      });
+      // calendarImageObservable = this.calendarService.fetchCalendarImage(code);
     }
-    calendarImageObservable
-      .pipe(
-        map((imageData) => {
-          const modifiedImageObservable: { [key: string]: SafeUrl } = {};
-          for (const theme in imageData['image']) {
-            const objectURL =
-              'data:image/png;base64,' + imageData['image'][theme];
-            modifiedImageObservable[theme] =
-              this.sanitizer.bypassSecurityTrustUrl(objectURL);
-          }
-          return modifiedImageObservable;
-        })
-      )
-      .subscribe(
-        (modifiedImageObservable) => {
-          this.calendarService.setCalendarImage(modifiedImageObservable);
-          this.isLoading = false;
-          this.router.navigate(['/']);
-        },
-        ({ error, status }) => {
-          console.log(error, status);
-          this.isLoading = false;
-          this.calendarService.setError({
-            error: error['detail'],
-            status: status,
-          });
-          this.router.navigate(['/']);
-        }
-      );
+    // calendarImageObservable
+    //   .pipe(
+    //     map((imageData) => {
+    //       const modifiedImageObservable: { [key: string]: SafeUrl } = {};
+    //       for (const theme in imageData['image']) {
+    //         const objectURL =
+    //           'data:image/png;base64,' + imageData['image'][theme];
+    //         modifiedImageObservable[theme] =
+    //           this.sanitizer.bypassSecurityTrustUrl(objectURL);
+    //       }
+    //       return modifiedImageObservable;
+    //     })
+    //   )
+    //   .subscribe(
+    //     (modifiedImageObservable) => {
+    //       this.calendarService.setCalendarImage(modifiedImageObservable);
+    //       this.isLoading = false;
+    //       this.router.navigate(['/']);
+    //     },
+    //     ({ error, status }) => {
+    //       console.log(error, status);
+    //       this.isLoading = false;
+    //       this.calendarService.setError({
+    //         error: error['detail'],
+    //         status: status,
+    //       });
+    //       this.router.navigate(['/']);
+    //     }
+    //   );
   }
 }
