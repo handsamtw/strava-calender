@@ -29,6 +29,7 @@ export class LoadingComponent implements OnInit {
         localStorage.setItem('uidValid', 'true');
       });
     }
+    // to give home component a buffer to catch latest localstorage value
     setInterval(() => {
       this.router.navigate(['/']);
     }, 500);

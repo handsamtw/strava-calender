@@ -1,14 +1,14 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/services/calendar.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit, OnChanges {
+export class HomeComponent implements OnInit {
   isUidValid = localStorage.getItem('uidValid') == 'true' ? true : false;
   constructor(private calendarService: CalendarService) {}
-  ngOnChanges() {}
+
   ngOnInit(): void {
     console.log(this.isUidValid);
     if (!this.isUidValid) {
