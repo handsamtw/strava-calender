@@ -6,7 +6,11 @@ import { CalendarService } from 'src/app/services/calendar.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  isUidValid = localStorage.getItem('uidValid') == 'true' ? true : false;
+  isUidValid =
+    localStorage.getItem('uid') != null &&
+    localStorage.getItem('uidValid') == 'true'
+      ? true
+      : false;
   constructor(private calendarService: CalendarService) {}
 
   ngOnInit(): void {
