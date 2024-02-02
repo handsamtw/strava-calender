@@ -2,10 +2,13 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { map } from 'rxjs';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
+  standalone: true,
+  imports: [MatProgressBarModule],
   styleUrls: ['./loading.component.css'],
 })
 export class LoadingComponent implements OnInit {

@@ -31,7 +31,6 @@ import { GenerateButtonComponent } from './components/generate-button/generate-b
     FooterComponent,
     GithubButtonComponent,
     CanvasComponent,
-    LoadingComponent,
     HomeComponent,
     ThemePreviewComponent,
     GenerateButtonComponent,
