@@ -10,7 +10,9 @@
 
 <ng-template #loadedContent>
   <div class="app-canvas" *ngIf="selectedImageUrl">
-    <div class="app-buttons">Share your amazing {{ sportType }} journey!</div>
+    <div *ngIf="sportType" class="app-buttons">
+      Share your amazing {{ sportType }} journey!
+    </div>
     <div class="app-buttons">
       <button
         class="app-download-button"

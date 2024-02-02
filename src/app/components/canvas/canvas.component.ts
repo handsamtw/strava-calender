@@ -36,20 +36,20 @@ export class CanvasComponent implements OnInit, OnChanges {
     } else {
       this.calendarService.getIsLoading().subscribe((isLoading) => {
         this.isLoading = isLoading;
+        if (isLoading && isMobileView) {
+          this.scrollToBottom();
+        }
       });
       this.calendarService.getCalendarImage().subscribe((data) => {
         this.imageData = data;
         const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
-        this.selectedImageUrl = data?.[theme] ?? '';
+        this.selectedImageUrl = data?.[theme];
+        this.sportType = localStorage.getItem('sportType');
       });
 
       // Check if it's mobile view and scroll down
       const isMobileView =
         window.innerWidth <= 430 && window.innerHeight <= 932;
-
-      if (this.selectedImageUrl != null && isMobileView) {
-        this.scrollToBottom();
-      }
     }
   }
   scrollToBottom() {
