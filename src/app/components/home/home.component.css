@@ -2,8 +2,6 @@
     display: flex;
     flex-direction: row;
     margin: -8px;
-    justify-content: center; /* Horizontally centers items */
-    align-items: center; /* Vertically centers items */
 }
 
 
@@ -16,17 +14,18 @@
     color: rgb(164, 157, 145);
     font-family: 'IBM Plex Mono', monospace;
     overflow-y: hidden;
-    min-height: 75rem;
+    height: 80rem;
 }
 
 
 .app-canvas {
-  min-height: 80rem;
+  max-height: 80rem;
   width: 65%;
   text-align: center; 
   color: rgb(164, 157, 145);
   font-family: 'IBM Plex Mono', monospace;
-  overflow-y: hidden;
+  overflow-y: scroll;
+  margin-top: 2rem;
 }
 
 .app-logo {
