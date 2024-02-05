@@ -7,12 +7,19 @@
     </div>
 
     <app-strava-connect-button *ngIf="!isUidValid"></app-strava-connect-button>
-    <app-generate-button *ngIf="isUidValid"></app-generate-button>
+    <app-generate-button
+      (onGenerateEvent)="onGenerate($event)"
+      *ngIf="isUidValid"
+    ></app-generate-button>
     <app-themes (themeChangeEvent)="onThemeChange($event)"></app-themes>
 
     <app-footer></app-footer>
   </div>
   <div class="app-canvas">
-    <app-canvas [currentTheme]="selectedTheme"></app-canvas>
+    <app-canvas
+      [isLoading]="isLoading"
+      [imageUrl]="imageUrl"
+      [errorMessage]="errorMessage"
+    ></app-canvas>
   </div>
 </div>

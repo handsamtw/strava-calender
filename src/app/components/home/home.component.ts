@@ -6,15 +6,17 @@ import { CalendarService } from 'src/app/services/calendar.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+  imageUrl: any;
   isUidValid =
     localStorage.getItem('uid') != null &&
     localStorage.getItem('uidValid') == 'true'
       ? true
       : false;
+  isLoading = false;
+  errorMessage = '';
   constructor(private calendarService: CalendarService) {}
 
   ngOnInit(): void {
-    console.log(this.isUidValid);
     if (!this.isUidValid) {
       const uid = localStorage.getItem('uid');
       this.calendarService.checkIsValidUid(uid).subscribe((response: any) => {
@@ -25,9 +27,40 @@ export class HomeComponent implements OnInit {
         }
       });
     }
+    const isMobileView = window.innerWidth <= 430 && window.innerHeight <= 932;
+
+    if (this.isLoading && isMobileView) {
+      this.scrollToBottom();
+    }
   }
-  selectedTheme = '';
+
+  onGenerate(uid: string | null) {
+    if (uid != null) {
+      this.generateCalendar(uid);
+    }
+  }
   onThemeChange(theme: string) {
-    this.selectedTheme = theme;
+    if (this.imageUrl !== undefined) {
+      const uid = localStorage.getItem('uid');
+      this.generateCalendar(uid);
+    }
+  }
+
+  private generateCalendar(uid: string | null) {
+    this.isLoading = true;
+    this.calendarService
+      .fetchCalendarImageFromUserId(uid as string)
+      .subscribe((imageData: ArrayBuffer) => {
+        const blob = new Blob([imageData], { type: 'image/png' });
+        const imageUrl = URL.createObjectURL(blob);
+        this.imageUrl = imageUrl;
+      });
+    this.isLoading = false;
+  }
+  scrollToBottom() {
+    window.scroll({
+      top: document.body.scrollHeight,
+      behavior: 'auto',
+    });
   }
 }

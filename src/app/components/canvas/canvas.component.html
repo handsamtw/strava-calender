@@ -9,16 +9,13 @@
 </ng-container>
 
 <ng-template #loadedContent>
-  <div class="app-canvas" *ngIf="selectedImageUrl">
+  <div *ngIf="errorMessage">Error: {{ errorMessage }}</div>
+  <div class="app-canvas" *ngIf="imageUrl">
     <div *ngIf="sportType" class="app-buttons">
       Share your amazing {{ sportType }} journey!
     </div>
     <div class="app-buttons">
-      <button
-        class="app-download-button"
-        type="button"
-        (click)="copyImage(selectedImageUrl)"
-      >
+      <button class="app-download-button" type="button" (click)="copyImage()">
         <mat-icon>file_copy</mat-icon>
 
         Copy
@@ -26,7 +23,7 @@
       <button
         class="app-download-button"
         type="button"
-        (click)="donwloadImage(selectedImageUrl)"
+        (click)="donwloadImage()"
       >
         <mat-icon>cloud_download</mat-icon>
 
@@ -35,11 +32,7 @@
     </div>
 
     <div>
-      <img
-        class="calendar-image"
-        *ngIf="selectedImageUrl"
-        [src]="selectedImageUrl"
-      />
+      <img class="calendar-image" *ngIf="imageUrl" [src]="imageUrl" />
     </div>
   </div>
 </ng-template>

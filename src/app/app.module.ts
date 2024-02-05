@@ -18,7 +18,6 @@ import { HomeComponent } from './components/home/home.component';
 import { GithubButtonComponent } from './components/github-button/github-button.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CanvasComponent } from './components/canvas/canvas.component';
-import { LoadingComponent } from './components/loading/loading.component';
 import { AppComponent } from './app.component';
 import { ThemesComponent } from './components/themes/themes.component';
 import { StravaConnectButtonComponent } from './components/strava-connect-button/strava-connect-button.component';
