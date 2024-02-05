@@ -1,6 +1,5 @@
-import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
-import { CalendarService } from 'src/app/services/calendar.service';
 
 @Component({
   selector: 'app-themes',
@@ -9,8 +8,7 @@ import { CalendarService } from 'src/app/services/calendar.service';
 })
 export class ThemesComponent {
   @Output() themeChangeEvent = new EventEmitter<string>();
-  selectedTheme = 'Reds';
-
+  selectedTheme = localStorage.getItem('selectedTheme') ?? 'Reds';
   selectedSport = localStorage.getItem('sportType') ?? 'Run';
   selectedUnit = localStorage.getItem('unit') ?? 'Imperial';
 
