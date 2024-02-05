@@ -54,8 +54,8 @@ export class HomeComponent implements OnInit {
         const blob = new Blob([imageData], { type: 'image/png' });
         const imageUrl = URL.createObjectURL(blob);
         this.imageUrl = imageUrl;
+        this.isLoading = false;
       });
-    this.isLoading = false;
   }
   scrollToBottom() {
     window.scroll({
