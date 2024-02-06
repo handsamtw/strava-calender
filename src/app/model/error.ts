@@ -1,4 +1,4 @@
-export type Error = {
+export type BackendError = {
   error: string;
   status: number;
 };

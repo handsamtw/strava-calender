@@ -50,10 +50,14 @@ export class HomeComponent implements OnInit {
     this.isLoading = true;
     this.calendarService
       .fetchCalendarImageFromUserId(uid as string)
-      .subscribe((imageData: ArrayBuffer) => {
-        const blob = new Blob([imageData], { type: 'image/png' });
-        const imageUrl = URL.createObjectURL(blob);
-        this.imageUrl = imageUrl;
+      .subscribe((response: any) => {
+        if (response instanceof ArrayBuffer) {
+          const blob = new Blob([response], { type: 'image/png' });
+          const imageUrl = URL.createObjectURL(blob);
+          this.imageUrl = imageUrl;
+        } else {
+          this.errorMessage = response['error'];
+        }
         this.isLoading = false;
       });
   }
