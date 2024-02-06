@@ -13,13 +13,13 @@
     padding: 1rem 0rem;
     color: rgb(164, 157, 145);
     font-family: 'IBM Plex Mono', monospace;
-    overflow-y: hidden;
-    height: 80rem;
+    overflow-y: scroll;
+    max-height: 50rem;
 }
 
 
 .app-canvas {
-  max-height: 80rem;
+  max-height: 50rem;
   width: 65%;
   text-align: center; 
   color: rgb(164, 157, 145);

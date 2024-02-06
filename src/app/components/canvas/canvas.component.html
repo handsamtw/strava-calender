@@ -11,13 +11,9 @@
 <ng-template #loadedContent>
   <div *ngIf="errorMessage">{{ errorMessage }}</div>
   <div class="app-canvas" *ngIf="imageUrl">
-    <div *ngIf="sportType" class="app-buttons">
-      Share your amazing {{ sportType }} journey!
-    </div>
     <div class="app-buttons">
       <button class="app-download-button" type="button" (click)="copyImage()">
         <mat-icon>file_copy</mat-icon>
-
         Copy
       </button>
       <button

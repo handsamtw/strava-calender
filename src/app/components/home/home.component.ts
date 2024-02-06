@@ -27,16 +27,16 @@ export class HomeComponent implements OnInit {
         }
       });
     }
-    const isMobileView = window.innerWidth <= 430 && window.innerHeight <= 932;
-
-    if (this.isLoading && isMobileView) {
-      this.scrollToBottom();
-    }
   }
 
   onGenerate(uid: string | null) {
     if (uid != null) {
       this.generateCalendar(uid);
+      const isMobileView =
+        window.innerWidth <= 430 && window.innerHeight <= 932;
+      if (this.isLoading && isMobileView) {
+        this.scrollToBottom();
+      }
     }
   }
   onThemeChange(theme: string) {
@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
           const blob = new Blob([response], { type: 'image/png' });
           const imageUrl = URL.createObjectURL(blob);
           this.imageUrl = imageUrl;
+          this.errorMessage = '';
         } else if (response != null && 'detail' in response) {
           this.errorMessage = response['detail'];
         } else {
