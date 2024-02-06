@@ -16,7 +16,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CanvasComponent implements OnInit, OnChanges {
   imageData: CalendarImage | null = null;
-  sportType = localStorage.getItem('sportType');
   @Input() isLoading: boolean = false;
   @Input() imageUrl: string = '';
   @Input() errorMessage: string = '';
