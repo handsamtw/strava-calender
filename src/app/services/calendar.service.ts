@@ -1,8 +1,8 @@
 import { Injectable, isDevMode } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 import { Environment } from '../model';
 
 @Injectable({
@@ -43,7 +43,25 @@ export class CalendarService {
     const theme = localStorage.getItem('selectedTheme') ?? 'Reds';
     const calendarImageEndpoint = `${this.config.BACKEND_ENDPOINT}/calendar`;
     const url = `${calendarImageEndpoint}?sport_type=${sport}&unit=${unit}&theme=${theme}&uid=${uid}`;
-    return this.http.get(url, { responseType: 'arraybuffer' });
+    return this.http.get(url, { responseType: 'arraybuffer' }).pipe(
+      catchError((error: any) => {
+        if (error instanceof HttpErrorResponse) {
+          const decoder = new TextDecoder('utf-8');
+          const errorString = decoder.decode(error.error);
+          let errorObject;
+          try {
+            errorObject = JSON.parse(errorString);
+          } catch (jsonError) {
+            console.error('Error parsing JSON:', jsonError);
+            errorObject = { detail: 'Unexpected error' };
+          } finally {
+            return of(errorObject);
+          }
+        } else {
+          return of(null);
+        }
+      })
+    );
   }
 
   // deprecated

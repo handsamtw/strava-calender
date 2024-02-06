@@ -9,7 +9,7 @@
 </ng-container>
 
 <ng-template #loadedContent>
-  <div *ngIf="errorMessage">Error: {{ errorMessage }}</div>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
   <div class="app-canvas" *ngIf="imageUrl">
     <div *ngIf="sportType" class="app-buttons">
       Share your amazing {{ sportType }} journey!
