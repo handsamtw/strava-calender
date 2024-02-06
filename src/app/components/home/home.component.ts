@@ -55,12 +55,15 @@ export class HomeComponent implements OnInit {
           const blob = new Blob([response], { type: 'image/png' });
           const imageUrl = URL.createObjectURL(blob);
           this.imageUrl = imageUrl;
+        } else if (response != null && 'detail' in response) {
+          this.errorMessage = response['detail'];
         } else {
-          this.errorMessage = response['error'];
+          this.errorMessage = 'Unexpected error';
         }
         this.isLoading = false;
       });
   }
+
   scrollToBottom() {
     window.scroll({
       top: document.body.scrollHeight,

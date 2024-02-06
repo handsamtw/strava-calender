@@ -47,15 +47,19 @@ export class CalendarService {
       catchError((error: any) => {
         if (error instanceof HttpErrorResponse) {
           const decoder = new TextDecoder('utf-8');
-          let errorMessage = decoder.decode(error.error);
-          const errorMessageObject = JSON.parse(errorMessage);
-          let errorObject = {
-            error: errorMessageObject['detail'],
-            status: error.status,
-          };
-          return of(errorObject);
+          const errorString = decoder.decode(error.error);
+          let errorObject;
+          try {
+            errorObject = JSON.parse(errorString);
+          } catch (jsonError) {
+            console.error('Error parsing JSON:', jsonError);
+            errorObject = { detail: 'Unexpected error' };
+          } finally {
+            return of(errorObject);
+          }
+        } else {
+          return of(null);
         }
-        return of(null);
       })
     );
   }
