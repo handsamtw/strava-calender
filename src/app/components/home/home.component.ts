@@ -7,26 +7,17 @@ import { CalendarService } from 'src/app/services/calendar.service';
 })
 export class HomeComponent implements OnInit {
   imageUrl: any;
-  isUidValid =
-    localStorage.getItem('uid') != null &&
-    localStorage.getItem('uidValid') == 'true'
-      ? true
-      : false;
+  isUidValid: boolean = false;
   isLoading = false;
   errorMessage = '';
   constructor(private calendarService: CalendarService) {}
 
   ngOnInit(): void {
-    if (!this.isUidValid) {
-      const uid = localStorage.getItem('uid');
-      this.calendarService.checkIsValidUid(uid).subscribe((response: any) => {
-        const isValid = response['is_valid'] as boolean;
-        if (isValid) {
-          this.isUidValid = true;
-          localStorage.setItem('uidValid', 'true');
-        }
-      });
-    }
+    const uid = localStorage.getItem('uid');
+    this.calendarService.checkIsValidUid(uid).subscribe((response: any) => {
+      const isValid = response['is_valid'] as boolean;
+      this.isUidValid = isValid;
+    });
   }
 
   onGenerate(uid: string | null) {

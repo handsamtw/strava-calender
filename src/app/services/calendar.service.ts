@@ -2,7 +2,7 @@ import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { DevEnvironment } from 'src/environment/environment';
 import { ProdEnvironment } from 'src/environment/environment.prod';
-import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 import { Environment } from '../model';
 
 @Injectable({
@@ -14,15 +14,6 @@ export class CalendarService {
   }
 
   private config: Environment;
-  private isValidUid$ = new BehaviorSubject<boolean>(false);
-
-  getIsValidUid() {
-    return this.isValidUid$.asObservable();
-  }
-
-  setIsValidUid(isValid: boolean): void {
-    this.isValidUid$.next(isValid);
-  }
 
   checkIsValidUid(uid: string | null) {
     if (uid == null) {
